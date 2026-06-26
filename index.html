@@ -1,832 +1,390 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Alexandre Guitars Archive — Documentando instrumentos, técnicas e histórias para futuras gerações. Arquivo editorial permanente de lutheria, guitarristas e cultura da guitarra.">
-<meta name="keywords" content="luthier, regulagem de guitarra, pintura de guitarra, restauração de guitarra, customização de guitarra, lutheria">
-<meta property="og:title" content="Alexandre Guitars Archive">
-<meta property="og:description" content="Documentando instrumentos, técnicas e histórias para futuras gerações.">
-<meta property="og:type" content="website">
-<title>Alexandre Guitars Archive — Documentação Permanente de Lutheria</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
-<style>
-
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-:root {
-  --parchment: #F2E4C0;
-  --parchment-dark: #E8D5A8;
-  --sepia: #8B5E2A;
-  --gold: #D4A843;
-  --ink: #0D0703;
-  --ink-70: rgba(13,7,3,0.70);
-  --ink-50: rgba(13,7,3,0.50);
-  --ink-35: rgba(13,7,3,0.35);
-  --ink-20: rgba(13,7,3,0.20);
-  --ink-10: rgba(13,7,3,0.10);
-  --ink-05: rgba(13,7,3,0.05);
-
-  --col: 64px;
-  --max-w: 1440px;
-
-  --wr: #6B4E2E;
-  --bn: #8B5E2A;
-  --ge: #D4A843;
-  --ms: #7A5B3A;
-  --ih: #556270;
-}
-
-html {
-  scroll-behavior: smooth;
-  background: var(--parchment);
-}
-
-body {
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--ink);
-  background: var(--parchment);
-  overflow-x: hidden;
-  position: relative;
-}
-
-/* texture overlay */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image:
-    repeating-linear-gradient(1deg, transparent 0, transparent 2px, rgba(139,94,42,0.015) 2px, rgba(139,94,42,0.015) 3px),
-    repeating-linear-gradient(91deg, transparent 0, transparent 8px, rgba(139,94,42,0.008) 8px, rgba(139,94,42,0.008) 9px),
-    radial-gradient(ellipse 200px 150px at 5% 8%, rgba(139,94,42,0.08) 0%, transparent 100%),
-    radial-gradient(ellipse 120px 90px at 96% 92%, rgba(139,94,42,0.07) 0%, transparent 100%),
-    radial-gradient(ellipse 95% 90% at 50% 50%, rgba(255,248,228,0.22) 0%, transparent 62%),
-    radial-gradient(ellipse 130% 130% at 50% 50%, transparent 48%, rgba(139,94,42,0.14) 100%);
-  mix-blend-mode: multiply;
-}
-
-/* grain */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.08;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)'/%3E%3C/svg%3E");
-  background-size: 260px 260px;
-  mix-blend-mode: multiply;
-}
-
-* { position: relative; z-index: 1; }
-
-.container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--col); }
-.rule-h { height: 1px; background: var(--ink-10); }
-.rule-gold { width: 40px; height: 1px; background: var(--gold); opacity: 0.6; }
-
-/* ── NAV ── */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  background: rgba(242,228,192,0.93);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--ink-10);
-}
-
-.nav-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 0 var(--col);
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav-brand {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  color: var(--ink);
-  text-decoration: none;
-  opacity: 0.7;
-}
-
-.nav-links {
-  display: flex;
-  gap: 40px;
-  list-style: none;
-}
-
-.nav-links a {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--ink-50);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.nav-links a:hover { color: var(--ink); }
-
-/* ── HERO ── */
-.hero {
-  padding-top: 120px;
-  padding-bottom: 80px;
-  min-height: 90vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
-
-.hero-content { max-width: 600px; }
-
-.hero-eyebrow {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  color: var(--sepia);
-  margin-bottom: 24px;
-}
-
-.hero-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(44px, 6vw, 72px);
-  font-weight: 700;
-  line-height: 0.95;
-  color: var(--ink);
-  margin-bottom: 20px;
-}
-
-.hero-subtitle {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
-  font-weight: 300;
-  font-style: italic;
-  color: var(--sepia);
-  line-height: 1.6;
-  margin-bottom: 40px;
-}
-
-.hero-meta {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 12px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--ink-35);
-}
-
-.hero-image {
-  aspect-ratio: 3/4;
-  background: linear-gradient(145deg, #b8ae8c 0%, #a09a78 30%, #b0a888 55%, #90886a 80%, #aca488 100%);
-  position: relative;
-  overflow: hidden;
-  margin-right: -64px;
-}
-
-.hero-image::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(0deg, rgba(255,255,255,0) 0, rgba(255,255,255,0) 4px, rgba(200,185,150,0.07) 4px, rgba(200,185,150,0.07) 5px);
-}
-
-.hero-image::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(13,7,3,0) 50%, rgba(13,7,3,0.2) 100%);
-}
-
-/* ── SERIES SECTION ── */
-.series-header {
-  padding: 100px 0 60px;
-  border-bottom: 1px solid var(--ink-10);
-  margin-top: 80px;
-}
-
-.series-eyebrow {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  color: var(--sepia);
-  margin-bottom: 16px;
-}
-
-.series-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(36px, 4vw, 56px);
-  font-weight: 700;
-  line-height: 1.1;
-  color: var(--ink);
-}
-
-.series-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 40px;
-  padding: 80px 0;
-}
-
-.series-card {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.series-card:hover {
-  transform: translateY(-6px);
-}
-
-.series-card-image {
-  aspect-ratio: 3/2;
-  background: linear-gradient(145deg, #b8ae8c 0%, #a09a78 30%, #b0a888 55%, #90886a 80%, #aca488 100%);
-  position: relative;
-  overflow: hidden;
-  border-top: 3px solid currentColor;
-  margin-bottom: 28px;
-}
-
-.series-card-image::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(0deg, rgba(255,255,255,0) 0, rgba(255,255,255,0) 4px, rgba(200,185,150,0.07) 4px, rgba(200,185,150,0.07) 5px);
-}
-
-.series-card-image::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(13,7,3,0) 50%, rgba(13,7,3,0.15) 100%);
-}
-
-.series-card-wr { color: var(--wr); }
-.series-card-bn { color: var(--bn); }
-.series-card-ge { color: var(--ge); }
-.series-card-ms { color: var(--ms); }
-.series-card-ih { color: var(--ih); }
-
-.card-code {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  opacity: 0.6;
-  margin-bottom: 8px;
-}
-
-.card-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 12px;
-}
-
-.card-desc {
-  font-size: 14px;
-  line-height: 1.7;
-  opacity: 0.7;
-  margin-bottom: 20px;
-}
-
-.card-count {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  opacity: 0.5;
-}
-
-/* ── RECENTLY ARCHIVED ── */
-.recently-section {
-  padding: 100px 0;
-  border-top: 1px solid var(--ink-10);
-  border-bottom: 1px solid var(--ink-10);
-}
-
-.recently-header {
-  margin-bottom: 60px;
-}
-
-.recently-eyebrow {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  color: var(--sepia);
-  margin-bottom: 12px;
-}
-
-.recently-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(32px, 3vw, 48px);
-  font-weight: 700;
-  line-height: 1.1;
-  color: var(--ink);
-  margin-bottom: 12px;
-}
-
-.recently-subtitle {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 16px;
-  font-weight: 300;
-  font-style: italic;
-  color: var(--sepia);
-}
-
-.recently-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 32px;
-}
-
-.recently-item {
-  padding: 32px;
-  border-left: 2px solid var(--gold);
-  background: rgba(255,255,255,0.2);
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
-}
-
-.recently-item:hover {
-  background: rgba(255,255,255,0.35);
-  transform: translateX(4px);
-}
-
-.recently-code {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--sepia);
-  margin-bottom: 10px;
-}
-
-.recently-item-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--ink);
-}
-
-/* ── FEATURED ── */
-.featured-section {
-  padding: 100px 0;
-  border-top: 1px solid var(--ink-10);
-  border-bottom: 1px solid var(--ink-10);
-}
-
-.featured-header {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  margin-bottom: 60px;
-}
-
-.featured-label {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  color: var(--sepia);
-  white-space: nowrap;
-}
-
-.featured-line { flex: 1; height: 1px; background: var(--ink-10); }
-
-.featured-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 80px;
-  align-items: start;
-}
-
-.featured-image {
-  aspect-ratio: 3/4;
-  background: linear-gradient(145deg, #b8ae8c 0%, #a09a78 30%, #b0a888 55%, #90886a 80%, #aca488 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.featured-image::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(0deg, rgba(255,255,255,0) 0, rgba(255,255,255,0) 4px, rgba(200,185,150,0.07) 4px, rgba(200,185,150,0.07) 5px);
-}
-
-.featured-image::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(13,7,3,0) 50%, rgba(13,7,3,0.2) 100%);
-}
-
-.featured-body { padding-top: 8px; }
-
-.featured-code {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--sepia);
-  margin-bottom: 16px;
-}
-
-.featured-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(32px, 4vw, 52px);
-  font-weight: 700;
-  line-height: 1.1;
-  color: var(--ink);
-  margin-bottom: 16px;
-}
-
-.featured-subtitle {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
-  font-weight: 300;
-  font-style: italic;
-  color: var(--sepia);
-  line-height: 1.5;
-  margin-bottom: 32px;
-}
-
-.featured-excerpt {
-  font-size: 15px;
-  line-height: 1.8;
-  color: var(--ink-70);
-  margin-bottom: 40px;
-  max-width: 520px;
-}
-
-.btn-archive {
-  display: inline-block;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--ink);
-  text-decoration: none;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--ink-20);
-  transition: border-color 0.2s;
-}
-
-.btn-archive:hover { border-color: var(--gold); }
-
-/* ── ABOUT SECTION ── */
-.about-section {
-  padding: 100px 0;
-  border-top: 1px solid var(--ink-10);
-  border-bottom: 1px solid var(--ink-10);
-}
-
-.about-inner {
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-.about-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(32px, 3vw, 48px);
-  font-weight: 700;
-  line-height: 1.1;
-  color: var(--ink);
-  margin-bottom: 28px;
-}
-
-.about-text {
-  font-size: 16px;
-  line-height: 1.9;
-  color: var(--ink-70);
-  margin-bottom: 40px;
-}
-
-/* ── FOOTER ── */
-footer {
-  border-top: 1px solid var(--ink-10);
-  padding: 80px var(--col) 60px;
-}
-
-.footer-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 80px;
-  padding-bottom: 60px;
-}
-
-.footer-column {
-  display: flex;
-  flex-direction: column;
-}
-
-.footer-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 7px;
-  text-transform: uppercase;
-  color: var(--ink);
-  opacity: 0.65;
-  margin-bottom: 12px;
-}
-
-.footer-tagline {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 16px;
-  font-weight: 300;
-  font-style: italic;
-  color: var(--sepia);
-  line-height: 1.5;
-  margin-bottom: 16px;
-}
-
-.footer-mission {
-  font-size: 13px;
-  line-height: 1.8;
-  color: var(--ink-50);
-}
-
-.footer-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: var(--sepia);
-  margin-bottom: 20px;
-}
-
-.footer-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.footer-list a {
-  font-size: 14px;
-  color: var(--ink-50);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.footer-list a:hover { color: var(--ink); }
-
-.footer-bottom {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding-top: 40px;
-  border-top: 1px solid var(--ink-05);
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 24px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 12px;
-  letter-spacing: 2px;
-  color: var(--ink-35);
-}
-
-/* ── RESPONSIVE ── */
-@media (max-width: 1024px) {
-  :root { --col: 40px; }
-  .hero { grid-template-columns: 1fr; gap: 48px; }
-  .hero-image { margin-right: 0; }
-  .featured-grid { grid-template-columns: 1fr; gap: 48px; }
-  .footer-inner { grid-template-columns: 1fr 1fr; gap: 48px; }
-}
-
-@media (max-width: 768px) {
-  :root { --col: 24px; }
-  .nav-links { display: none; }
-  .series-grid { grid-template-columns: 1fr; }
-  .recently-grid { grid-template-columns: 1fr; }
-  .footer-inner { grid-template-columns: 1fr; gap: 40px; }
-  .footer-bottom { flex-direction: column; gap: 12px; align-items: flex-start; }
-}
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alexandre - Oficina & Archive</title>
+  <meta name="description" content="Oficina de construção, regulagem e restauração de instrumentos. Archive de documentação histórica e preservação da cultura.">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: rgb(242, 228, 192);
+      color: rgb(13, 7, 3);
+      font-size: 16px;
+      line-height: normal;
+      text-decoration: none;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Background decorative patterns */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      z-index: -1;
+      background-image: 
+        repeating-linear-gradient(1deg, rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 2px, rgba(139, 94, 42, 0.008) 2px, rgba(139, 94, 42, 0.008) 3px),
+        repeating-linear-gradient(91deg, rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 8px, rgba(139, 94, 42, 0.004) 8px, rgba(139, 94, 42, 0.004) 9px),
+        radial-gradient(180px 140px at 8% 10%, rgba(139, 94, 42, 0.05) 0%, rgba(0, 0, 0, 0) 100%),
+        radial-gradient(100px 80px at 94% 90%, rgba(139, 94, 42, 0.04) 0%, rgba(0, 0, 0, 0) 100%),
+        radial-gradient(95% 90%, rgba(255, 248, 228, 0.15) 0%, rgba(0, 0, 0, 0) 65%),
+        radial-gradient(130% 130%, rgba(0, 0, 0, 0) 50%, rgba(139, 94, 42, 0.09) 100%);
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      z-index: -1;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)'/%3E%3C/svg%3E");
+      background-size: 280px 280px;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 1536px;
+      margin: 0 auto;
+      z-index: 1;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      max-width: 1100px;
+      min-height: 639.2px;
+      margin: 0 auto;
+      padding: 0 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-section {
+      position: relative;
+      text-align: center;
+      width: 480px;
+      margin-top: 40px;
+      margin-bottom: 60px;
+    }
+
+    .logo-section img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      text-align: center;
+      text-transform: uppercase;
+      margin-bottom: 60px;
+      color: rgba(13, 7, 3, 0.5);
+      font-size: 11px;
+      letter-spacing: 2px;
+      line-height: 22px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+
+    .divider {
+      position: relative;
+      text-align: center;
+      width: 60px;
+      height: 0.5px;
+      margin-bottom: 70px;
+      background-color: rgba(13, 7, 3, 0.1);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      width: 100%;
+      margin-bottom: 100px;
+      text-align: center;
+      position: relative;
+    }
+
+    .grid-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    .section-label {
+      font-family: 'Cormorant Garamond', serif;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      color: rgba(13, 7, 3, 0.1);
+      font-size: 10px;
+      letter-spacing: 6px;
+      line-height: 16px;
+      opacity: 0.6;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      letter-spacing: -0.3px;
+      line-height: 48.3px;
+      margin-bottom: 16px;
+    }
+
+    .section-description {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 28px;
+      color: rgb(139, 94, 42);
+      font-size: 14px;
+      line-height: 25.2px;
+      max-width: 280px;
+    }
+
+    .link-button {
+      position: relative;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 4px;
+      line-height: 19.2px;
+      font-family: 'Cormorant Garamond', serif;
+      display: inline-block;
+      padding: 10px 20px 16px 20px;
+      cursor: pointer;
+      text-decoration: none;
+      color: rgb(13, 7, 3);
+      transition: all 0.3s ease;
+      border: none;
+      background: transparent;
+      z-index: 10;
+      position: relative;
+    }
+
+    .link-button::after {
+      content: '';
+      position: absolute;
+      height: 1px;
+      width: 0;
+      left: 50%;
+      bottom: 0px;
+      background-color: rgb(212, 168, 67);
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+
+    .link-button:hover::after {
+      width: 100%;
+      left: 0;
+    }
+
+    .link-button:active {
+      opacity: 0.8;
+    }
+
+    footer {
+      position: relative;
+      text-transform: uppercase;
+      width: 100%;
+      color: rgba(13, 7, 3, 0.2);
+      font-size: 10px;
+      letter-spacing: 3px;
+      line-height: 16px;
+      font-family: 'Cormorant Garamond', serif;
+      padding-top: 80px;
+      padding-bottom: 60px;
+      border-top: 0.8px solid rgba(13, 7, 3, 0.1);
+      z-index: 1;
+      position: relative;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .footer-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .footer-text {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      opacity: 0.5;
+      font-size: 10px;
+    }
+
+    .volume-indicator {
+      position: fixed;
+      bottom: 24px;
+      right: 40px;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      text-transform: uppercase;
+      color: rgba(13, 7, 3, 0.2);
+      font-size: 10px;
+      letter-spacing: 2px;
+      line-height: 16px;
+      z-index: 2;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      main {
+        padding: 0 30px;
+      }
+
+      .logo-section {
+        width: 350px;
+      }
+
+      .grid-container {
+        gap: 60px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        max-width: 100%;
+      }
+
+      main {
+        padding: 0 20px;
+        min-height: auto;
+      }
+
+      .logo-section {
+        width: 250px;
+        margin-bottom: 40px;
+      }
+
+      .tagline {
+        font-size: 10px;
+        margin-bottom: 40px;
+      }
+
+      .divider {
+        margin-bottom: 50px;
+      }
+
+      .grid-container {
+        grid-template-columns: 1fr;
+        gap: 60px;
+        margin-bottom: 60px;
+      }
+
+      .section-title {
+        font-size: 32px;
+        line-height: 36px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 20px;
+      }
+
+      .volume-indicator {
+        right: 20px;
+        bottom: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <a href="#" class="nav-brand">Alexandre Guitars Archive</a>
-    <ul class="nav-links">
-      <li><a href="#series">Séries</a></li>
-      <li><a href="#recently">Recente</a></li>
-      <li><a href="#about">Sobre</a></li>
-    </ul>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="container">
-  <div class="hero">
-    <div class="hero-content">
-      <p class="hero-eyebrow">Arquivo Editorial Permanente</p>
-      <h1 class="hero-title">Alexandre Guitars Archive</h1>
-      <p class="hero-subtitle">Documentando instrumentos, técnicas e histórias para futuras gerações.</p>
-      <div class="hero-meta">
-        <span>Desde 2024</span>
-        <span>·</span>
-        <span>Coleção em expansão</span>
+  <div class="container">
+    <main>
+      <div class="logo-section">
+        <img src="logo.png" alt="Alexandre logo">
       </div>
-    </div>
-    <div class="hero-image" role="img" aria-label="Instrumento em arquivo fotográfico"></div>
+
+      <p class="tagline">Precisão na oficina. Permanência no Archive.</p>
+
+      <div class="divider"></div>
+
+      <div class="grid-container">
+        <div class="grid-item">
+          <p class="section-label">AG-OF</p>
+          <h1 class="section-title">Oficina</h1>
+          <p class="section-description">Construção, regulagem e restauração de instrumentos.</p>
+          <a href="https://alexandreguitars.com.br/" class="link-button" target="_blank">Entrar</a>
+        </div>
+
+        <div class="grid-item">
+          <p class="section-label">AG-AR</p>
+          <h1 class="section-title">Archive</h1>
+          <p class="section-description">Documentação histórica e preservação da cultura.</p>
+          <a href="http://archive.alexandreguitars.com.br/" class="link-button" target="_blank">Entrar</a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-item">
+          <p class="footer-text">EST. MMXXIV</p>
+        </div>
+        <div class="footer-item">
+          <p class="footer-text">São Paulo, Brasil</p>
+        </div>
+        <div class="footer-item">
+          <p class="footer-text">Archive Edition</p>
+        </div>
+      </div>
+    </footer>
+
+    <div class="volume-indicator">Volume I</div>
   </div>
-</section>
-
-<!-- SERIES -->
-<section id="series" class="container">
-  <div class="series-header">
-    <p class="series-eyebrow">Estrutura do Arquivo</p>
-    <h2 class="series-title">Cinco Séries de Documentação</h2>
-  </div>
-
-  <div class="series-grid">
-    <a href="/workshop-records" class="series-card series-card-wr">
-      <div class="series-card-image"></div>
-      <p class="card-code">AG-WR</p>
-      <h3 class="card-title">Workshop Records</h3>
-      <p class="card-desc">Documentação de trabalhos em oficina: colagem de cavalete, troca de trastes, regulagem, pintura, blindagem.</p>
-      <p class="card-count">24 registros</p>
-    </a>
-
-    <a href="/builders-notes" class="series-card series-card-bn">
-      <div class="series-card-image"></div>
-      <p class="card-code">AG-BN</p>
-      <h3 class="card-title">Builder's Notes</h3>
-      <p class="card-desc">Observações sobre guitarristas, seus instrumentos e filosofias de construção baseadas em análise histórica.</p>
-      <p class="card-count">3 entradas</p>
-    </a>
-
-    <a href="/golden-era" class="series-card series-card-ge">
-      <div class="series-card-image"></div>
-      <p class="card-code">AG-GE</p>
-      <h3 class="card-title">Golden Era</h3>
-      <p class="card-desc">Períodos históricos que moldaram a lutheria moderna: 1954, 1957, 1960 e além.</p>
-      <p class="card-count">3 registros</p>
-    </a>
-
-    <a href="/material-stories" class="series-card series-card-ms">
-      <div class="series-card-image"></div>
-      <p class="card-code">AG-MS</p>
-      <h3 class="card-title">Material Stories</h3>
-      <p class="card-desc">Histórias das madeiras, vernizes, envelhecimento natural e componentes que definem o som.</p>
-      <p class="card-count">1 entrada</p>
-    </a>
-
-    <a href="/instrument-heritage" class="series-card series-card-ih">
-      <div class="series-card-image"></div>
-      <p class="card-code">AG-IH</p>
-      <h3 class="card-title">Instrument Heritage</h3>
-      <p class="card-desc">Instrumentos importantes, sua preservação e o legado que carregam.</p>
-      <p class="card-count">Em breve</p>
-    </a>
-  </div>
-
-  <div class="rule-h"></div>
-</section>
-
-<!-- RECENTLY ARCHIVED -->
-<section id="recently" class="container recently-section">
-  <div class="recently-header">
-    <p class="recently-eyebrow">Índice Editorial</p>
-    <h2 class="recently-title">Recentemente Arquivado</h2>
-    <p class="recently-subtitle">As entradas mais recentes do arquivo.</p>
-  </div>
-
-  <div class="recently-grid">
-    <a href="/workshop-records/off-white-braco-preto" class="recently-item">
-      <p class="recently-code">AG-WR-024</p>
-      <h3 class="recently-item-title">Off White + Braço Preto</h3>
-    </a>
-
-    <a href="/builders-notes/joe-bonamassa" class="recently-item">
-      <p class="recently-code">AG-BN-003</p>
-      <h3 class="recently-item-title">Joe Bonamassa</h3>
-    </a>
-
-    <a href="/golden-era/1954" class="recently-item">
-      <p class="recently-code">AG-GE-001</p>
-      <h3 class="recently-item-title">1954: O Início</h3>
-    </a>
-
-    <a href="/material-stories/ash" class="recently-item">
-      <p class="recently-code">AG-MS-001</p>
-      <h3 class="recently-item-title">A História do Ash</h3>
-    </a>
-  </div>
-</section>
-
-<!-- FEATURED -->
-<section id="featured" class="container featured-section">
-  <div class="featured-header">
-    <span class="featured-label">Destaque Editorial</span>
-    <div class="featured-line"></div>
-  </div>
-
-  <div class="featured-grid">
-    <div class="featured-image" role="img" aria-label="Guitarra Off White com braço preto"></div>
-    <div class="featured-body">
-      <p class="featured-code">AG-WR-024</p>
-      <h2 class="featured-title">Off White + Braço Preto</h2>
-      <p class="featured-subtitle">Mais do que uma nova cor. Uma nova identidade.</p>
-      <p class="featured-excerpt">Projeto de refinamento de uma guitarra Sunburst transformada em Off White com braço preto. O processo envolveu preparação meticilosa, aplicação de acabamento premium e setup completo para garantir que a nova estética acompanhasse a qualidade sonora.</p>
-      <a href="/workshop-records/off-white-braco-preto" class="btn-archive">Ler documento</a>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="container about-section">
-  <div class="about-inner">
-    <h2 class="about-title">Sobre o Archive</h2>
-    <p class="about-text">O Alexandre Guitars Archive é um projeto permanente dedicado à documentação de instrumentos, processos, músicos e técnicas que moldam a cultura da guitarra. Através de cinco séries temáticas, preservamos o conhecimento artesanal, histórico e cultural que define a lutheria de qualidade.</p>
-    <a href="#manifesto" class="btn-archive">Ler Manifesto</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-column">
-      <p class="footer-logo">Alexandre Guitars Archive</p>
-      <p class="footer-tagline">Construídas para atravessar gerações.</p>
-      <p class="footer-mission">Preservando instrumentos, técnicas e histórias que definem a cultura da guitarra. Arquivo editorial permanente desde 2024.</p>
-    </div>
-
-    <div class="footer-column">
-      <p class="footer-title">Séries</p>
-      <ul class="footer-list">
-        <li><a href="/workshop-records">Workshop Records</a></li>
-        <li><a href="/builders-notes">Builder's Notes</a></li>
-        <li><a href="/golden-era">Golden Era</a></li>
-        <li><a href="/material-stories">Material Stories</a></li>
-        <li><a href="/instrument-heritage">Instrument Heritage</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-column">
-      <p class="footer-title">Contato</p>
-      <ul class="footer-list">
-        <li><a href="mailto:contato@alexandreguitars.com.br">contato@alexandreguitars.com.br</a></li>
-        <li><a href="tel:+551199339413">(11) 99339-4130</a></li>
-        <li><a href="https://instagram.com/alexandreguitarsluthieria">@alexandreguitarsluthieria</a></li>
-        <li style="margin-top:16px;opacity:0.5;">Lapa, São Paulo</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2024 Alexandre Guitars · Todos os direitos reservados</p>
-    <p>Arquivo Editorial Permanente · Departamento de Documentação</p>
-  </div>
-</footer>
-
 </body>
 </html>
