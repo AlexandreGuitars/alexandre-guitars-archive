@@ -404,115 +404,6 @@ nav {
   color: var(--ink);
 }
 
-/* ── FEATURED ── */
-.featured-section {
-  padding: 100px 0;
-  border-top: 1px solid var(--ink-10);
-  border-bottom: 1px solid var(--ink-10);
-}
-
-.featured-header {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  margin-bottom: 60px;
-}
-
-.featured-label {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  color: var(--sepia);
-  white-space: nowrap;
-}
-
-.featured-line { flex: 1; height: 1px; background: var(--ink-10); }
-
-.featured-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 80px;
-  align-items: start;
-}
-
-.featured-image {
-  aspect-ratio: 3/4;
-  background: linear-gradient(145deg, #b8ae8c 0%, #a09a78 30%, #b0a888 55%, #90886a 80%, #aca488 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.featured-image::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(0deg, rgba(255,255,255,0) 0, rgba(255,255,255,0) 4px, rgba(200,185,150,0.07) 4px, rgba(200,185,150,0.07) 5px);
-}
-
-.featured-image::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(13,7,3,0) 50%, rgba(13,7,3,0.2) 100%);
-}
-
-.featured-body { padding-top: 8px; }
-
-.featured-code {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--sepia);
-  margin-bottom: 16px;
-}
-
-.featured-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(32px, 4vw, 52px);
-  font-weight: 700;
-  line-height: 1.1;
-  color: var(--ink);
-  margin-bottom: 16px;
-}
-
-.featured-subtitle {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
-  font-weight: 300;
-  font-style: italic;
-  color: var(--sepia);
-  line-height: 1.5;
-  margin-bottom: 32px;
-}
-
-.featured-excerpt {
-  font-size: 15px;
-  line-height: 1.8;
-  color: var(--ink-70);
-  margin-bottom: 40px;
-  max-width: 520px;
-}
-
-.btn-archive {
-  display: inline-block;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--ink);
-  text-decoration: none;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--ink-20);
-  transition: border-color 0.2s;
-}
-
-.btn-archive:hover { border-color: var(--gold); }
-
 /* ── ABOUT SECTION ── */
 .about-section {
   padding: 100px 0;
@@ -540,6 +431,22 @@ nav {
   color: var(--ink-70);
   margin-bottom: 40px;
 }
+
+.btn-archive {
+  display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ink-20);
+  transition: border-color 0.2s;
+}
+
+.btn-archive:hover { border-color: var(--gold); }
 
 /* ── FOOTER ── */
 footer {
@@ -634,7 +541,6 @@ footer {
   :root { --col: 40px; }
   .hero { grid-template-columns: 1fr; gap: 48px; }
   .hero-image { margin-right: 0; }
-  .featured-grid { grid-template-columns: 1fr; gap: 48px; }
   .footer-inner { grid-template-columns: 1fr 1fr; gap: 48px; }
 }
 
@@ -741,11 +647,6 @@ footer {
   </div>
 
   <div class="recently-grid">
-    <a href="/workshop-records/off-white-braco-preto" class="recently-item">
-      <p class="recently-code">AG-WR-024</p>
-      <h3 class="recently-item-title">Off White + Braço Preto</h3>
-    </a>
-
     <a href="/builders-notes/joe-bonamassa" class="recently-item">
       <p class="recently-code">AG-BN-003</p>
       <h3 class="recently-item-title">Joe Bonamassa</h3>
@@ -760,25 +661,11 @@ footer {
       <p class="recently-code">AG-MS-001</p>
       <h3 class="recently-item-title">A História do Ash</h3>
     </a>
-  </div>
-</section>
 
-<!-- FEATURED -->
-<section id="featured" class="container featured-section">
-  <div class="featured-header">
-    <span class="featured-label">Destaque Editorial</span>
-    <div class="featured-line"></div>
-  </div>
-
-  <div class="featured-grid">
-    <div class="featured-image" role="img" aria-label="Guitarra Off White com braço preto"></div>
-    <div class="featured-body">
-      <p class="featured-code">AG-WR-024</p>
-      <h2 class="featured-title">Off White + Braço Preto</h2>
-      <p class="featured-subtitle">Mais do que uma nova cor. Uma nova identidade.</p>
-      <p class="featured-excerpt">Projeto de refinamento de uma guitarra Sunburst transformada em Off White com braço preto. O processo envolveu preparação meticilosa, aplicação de acabamento premium e setup completo para garantir que a nova estética acompanhasse a qualidade sonora.</p>
-      <a href="/workshop-records/off-white-braco-preto" class="btn-archive">Ler documento</a>
-    </div>
+    <a href="/builders-notes/eric-johnson" class="recently-item">
+      <p class="recently-code">AG-BN-002</p>
+      <h3 class="recently-item-title">Eric Johnson</h3>
+    </a>
   </div>
 </section>
 
