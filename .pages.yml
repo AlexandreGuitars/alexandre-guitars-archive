@@ -1,0 +1,135 @@
+media:
+  input: media
+  output: /media
+
+content:
+  - name: builders_notes
+    label: Builder's Notes
+    type: collection
+    path: content/builders-notes
+    format: yaml-frontmatter
+    filename: "{ref}.md"
+    view:
+      primary: title
+      fields: [ref, title, year]
+      sort: [year, title]
+      default:
+        sort: year
+        order: desc
+    fields:
+      - name: ref
+        label: Código
+        type: string
+        required: true
+        pattern: "^AG-BN-\\d{3}$"
+      - name: title
+        label: Título
+        type: string
+        required: true
+      - name: subtitle
+        label: Subtítulo
+        type: text
+      - name: year
+        label: Ano
+        type: number
+      - name: excerpt
+        label: Resumo
+        type: text
+      - name: hero
+        label: Imagem de destaque
+        type: image
+        options:
+          path: builders-notes
+      - name: quote
+        label: Frase de destaque
+        type: text
+      - name: body
+        label: Conteúdo editorial
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+  - name: workshop_records
+    label: Workshop Records
+    type: collection
+    path: content/workshop
+    format: yaml-frontmatter
+    filename: "{ref}.md"
+    view:
+      primary: title
+      fields: [ref, title, year]
+      sort: [year, title]
+      default:
+        sort: year
+        order: desc
+    fields:
+      - name: ref
+        label: Código
+        type: string
+        required: true
+        pattern: "^AG-WR-\\d{3}$"
+      - name: title
+        label: Título
+        type: string
+        required: true
+      - name: subtitle
+        label: Subtítulo
+        type: text
+      - name: year
+        label: Ano
+        type: number
+      - name: excerpt
+        label: Resumo
+        type: text
+      - name: hero
+        label: Imagem de destaque
+        type: image
+        options:
+          path: workshop
+      - name: instruments
+        label: Instrumentos
+        type: object
+        list:
+          collapsible:
+            summary: "{instrument} — {services}"
+        fields:
+          - name: instrument
+            label: Instrumento
+            type: string
+          - name: services
+            label: Serviços
+            type: string
+      - name: before_images
+        label: Fotografias de entrada
+        type: image
+        options:
+          path: workshop
+          multiple:
+            max: 20
+          unique: true
+      - name: workshop_images
+        label: Fotografias da oficina
+        type: image
+        options:
+          path: workshop
+          multiple:
+            max: 20
+          unique: true
+      - name: after_images
+        label: Fotografias depois
+        type: image
+        options:
+          path: workshop
+          multiple:
+            max: 20
+          unique: true
+      - name: quote
+        label: Frase de destaque
+        type: text
+      - name: body
+        label: Conteúdo editorial
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
