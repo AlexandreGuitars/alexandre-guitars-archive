@@ -3,8 +3,32 @@ media:
   output: /media
 
 content:
-  - name: records
-    label: Records
+  - name: workshop_records
+    label: Workshop Records
     type: collection
-    path: records
+    path: records/workshop
+    format: code
+
+  - name: builders_notes
+    label: Builder's Notes
+    type: collection
+    path: records/builders-notes
+    format: code
+
+  - name: golden_era
+    label: Golden Era
+    type: collection
+    path: records/golden-era
+    format: code
+
+  - name: material_stories
+    label: Material Stories
+    type: collection
+    path: records/material-stories
+    format: code
+
+  - name: instrument_heritage
+    label: Instrument Heritage
+    type: collection
+    path: records/instrument-heritage
     format: code
