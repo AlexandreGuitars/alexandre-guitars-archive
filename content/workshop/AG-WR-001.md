@@ -3,7 +3,8 @@ ref: AG-WR-001
 title: Depois de anos em silêncio
 subtitle: Fernandes Stratocaster & Tanglewood — um retorno à música.
 year: 2026
-excerpt: "Dois instrumentos, uma mesma história: anos guardados dentro de seus cases antes de voltarem à música."
+excerpt: "Dois instrumentos, uma mesma história: anos guardados dentro de seus
+  cases antes de voltarem à música."
 hero: /media/workshop/01-tanglewood-before.jpeg
 instruments:
   - instrument: Fernandes Stratocaster
@@ -24,10 +25,8 @@ after_images:
   - /media/workshop/05-fernandes-pickups-before.jpeg
   - /media/workshop/06-fernandes-controls-before.jpeg
   - /media/workshop/07-fernandes-bridge-before.jpeg
-  - /media/workshop/15-fernandes-fretboard-after.jpeg
 quote: Alguns instrumentos passam anos esperando. Quando voltam, a história continua.
 ---
-
 ## 01 — O case
 
 Dois instrumentos, uma mesma história.
@@ -44,7 +43,7 @@ Mesmo antes da manutenção, a Fernandes chama atenção pela impressão de cons
 
 Uma boa manutenção não precisa apagar a passagem do tempo. Ela deve preservar aquilo que foi bem construído.
 
-> Quando a construção é boa, o trabalho da oficina começa pela preservação — não pela substituição.
+> Quando a construção é boa, o trabalho da oficina começa pela preservação, não pela substituição.
 
 O violão Tanglewood conseguiu se manter em bom estado geral, em grande parte por ter permanecido protegido dentro de seu case durante os anos em que ficou guardado.
 
