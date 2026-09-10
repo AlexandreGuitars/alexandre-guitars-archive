@@ -1,0 +1,10 @@
+media:
+  input: media
+  output: /media
+
+content:
+  - name: records
+    label: Records
+    type: collection
+    path: records
+    format: code
