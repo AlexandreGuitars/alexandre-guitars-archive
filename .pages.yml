@@ -56,11 +56,124 @@ content:
         label: Resumo
         type: text
 
-      - name: hero
-        label: Imagem de destaque
-        type: image
-        options:
-          path: builders-notes
+      -       - name: images
+        label: Fotografias
+        type: object
+        fields:
+
+          - name: hero
+            label: Imagem de abertura
+            type: object
+            fields:
+
+              - name: image
+                label: Fotografia
+                type: image
+                options:
+                  path: builders-notes
+
+              - name: caption
+                label: Legenda
+                type: string
+
+              - name: credit
+                label: Crédito
+                type: string
+
+          - name: image_02
+            label: Imagem 02
+            type: object
+            fields:
+
+              - name: image
+                label: Fotografia
+                type: image
+                options:
+                  path: builders-notes
+
+              - name: caption
+                label: Legenda
+                type: string
+
+              - name: credit
+                label: Crédito
+                type: string
+
+          - name: image_03
+            label: Imagem 03
+            type: object
+            fields:
+
+              - name: image
+                label: Fotografia
+                type: image
+                options:
+                  path: builders-notes
+
+              - name: caption
+                label: Legenda
+                type: string
+
+              - name: credit
+                label: Crédito
+                type: string
+
+          - name: image_04
+            label: Imagem 04
+            type: object
+            fields:
+
+              - name: image
+                label: Fotografia
+                type: image
+                options:
+                  path: builders-notes
+
+              - name: caption
+                label: Legenda
+                type: string
+
+              - name: credit
+                label: Crédito
+                type: string
+
+          - name: image_05
+            label: Imagem 05
+            type: object
+            fields:
+
+              - name: image
+                label: Fotografia
+                type: image
+                options:
+                  path: builders-notes
+
+              - name: caption
+                label: Legenda
+                type: string
+
+              - name: credit
+                label: Crédito
+                type: string
+
+          - name: image_06
+            label: Imagem 06
+            type: object
+            fields:
+
+              - name: image
+                label: Fotografia
+                type: image
+                options:
+                  path: builders-notes
+
+              - name: caption
+                label: Legenda
+                type: string
+
+              - name: credit
+                label: Crédito
+                type: string
 
       - name: quote
         label: Frase de destaque
