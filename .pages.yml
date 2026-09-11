@@ -3,52 +3,124 @@ media:
   output: /media
 
 content:
+
+  # ============================================================
+  # BUILDER'S NOTES
+  # ============================================================
+
   - name: builders_notes
     label: Builder's Notes
     type: collection
     path: content/builders-notes
     format: yaml-frontmatter
     filename: "{ref}.md"
+
     view:
       primary: title
-      fields: [ref, title, year]
+      fields: [ref, title, year, status]
       sort: [year, title]
       default:
         sort: year
         order: desc
+
     fields:
+
       - name: ref
         label: Código
         type: string
         required: true
-        pattern: "^AG-BN-\\d{3}$"
+        pattern: '^[A-Z]{2}-BN-[0-9]{3}$'
+
       - name: title
         label: Título
         type: string
         required: true
+
       - name: subtitle
         label: Subtítulo
         type: text
+
       - name: year
         label: Ano
         type: number
+
+      - name: status
+        label: Status
+        type: select
+        options:
+          values:
+            - draft
+            - published
+
       - name: excerpt
         label: Resumo
         type: text
+
       - name: hero
         label: Imagem de destaque
         type: image
         options:
           path: builders-notes
+
       - name: quote
         label: Frase de destaque
         type: text
-      - name: body
-        label: Conteúdo editorial
+
+      - name: archive_observation
+        label: Observação do Archive
         type: rich-text
         options:
           format: markdown
           switcher: true
+
+      - name: analysis
+        label: Análise
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: builder_reflection
+        label: Reflexão do Builder
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: principle
+        label: Princípio
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: conclusion
+        label: Conclusão
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: tags
+        label: Tags
+        type: string
+
+      - name: credits
+        label: Créditos
+        type: text
+
+      # Compatibilidade com os registros atuais
+      - name: body
+        label: Conteúdo editorial legado
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+
+  # ============================================================
+  # WORKSHOP RECORDS
+  # ============================================================
 
   - name: workshop_records
     label: Workshop Records
@@ -56,37 +128,54 @@ content:
     path: content/workshop
     format: yaml-frontmatter
     filename: "{ref}.md"
+
     view:
       primary: title
-      fields: [ref, title, year]
+      fields: [ref, title, year, status]
       sort: [year, title]
       default:
         sort: year
         order: desc
+
     fields:
+
       - name: ref
         label: Código
         type: string
         required: true
-        pattern: "^AG-WR-\\d{3}$"
+        pattern: '^[A-Z]{2}-WR-[0-9]{3}$'
+
       - name: title
         label: Título
         type: string
         required: true
+
       - name: subtitle
         label: Subtítulo
         type: text
+
       - name: year
         label: Ano
         type: number
+
+      - name: status
+        label: Status
+        type: select
+        options:
+          values:
+            - draft
+            - published
+
       - name: excerpt
         label: Resumo
         type: text
+
       - name: hero
         label: Imagem de destaque
         type: image
         options:
           path: workshop
+
       - name: instruments
         label: Instrumentos
         type: object
@@ -94,12 +183,23 @@ content:
           collapsible:
             summary: "{instrument} — {services}"
         fields:
+
           - name: instrument
             label: Instrumento
             type: string
+
+          - name: brand
+            label: Marca
+            type: string
+
+          - name: model
+            label: Modelo
+            type: string
+
           - name: services
             label: Serviços
             type: string
+
       - name: before_images
         label: Fotografias de entrada
         type: image
@@ -108,6 +208,7 @@ content:
           multiple:
             max: 20
           unique: true
+
       - name: workshop_images
         label: Fotografias da oficina
         type: image
@@ -116,6 +217,7 @@ content:
           multiple:
             max: 20
           unique: true
+
       - name: after_images
         label: Fotografias depois
         type: image
@@ -124,11 +226,423 @@ content:
           multiple:
             max: 20
           unique: true
+
       - name: quote
         label: Frase de destaque
         type: text
+
+      - name: introduction
+        label: Introdução
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: construction_note
+        label: Observação de construção
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: before_text
+        label: Estado de entrada
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: intervention
+        label: Trabalho realizado
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: after_text
+        label: Estado depois
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: conclusion
+        label: Conclusão
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: tags
+        label: Tags
+        type: string
+
+      - name: credits
+        label: Créditos
+        type: text
+
+      # Compatibilidade com os registros atuais
       - name: body
-        label: Conteúdo editorial
+        label: Conteúdo editorial legado
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+
+  # ============================================================
+  # GOLDEN ERA
+  # ============================================================
+
+  - name: golden_era
+    label: Golden Era
+    type: collection
+    path: content/golden-era
+    format: yaml-frontmatter
+    filename: "{ref}.md"
+
+    view:
+      primary: title
+      fields: [ref, title, year, status]
+      sort: [year, title]
+      default:
+        sort: year
+        order: desc
+
+    fields:
+
+      - name: ref
+        label: Código
+        type: string
+        required: true
+        pattern: '^[A-Z]{2}-GE-[0-9]{3}$'
+
+      - name: title
+        label: Título
+        type: string
+        required: true
+
+      - name: subtitle
+        label: Subtítulo
+        type: text
+
+      - name: year
+        label: Ano
+        type: number
+
+      - name: status
+        label: Status
+        type: select
+        options:
+          values:
+            - draft
+            - published
+
+      - name: excerpt
+        label: Resumo
+        type: text
+
+      - name: hero
+        label: Imagem de destaque
+        type: image
+        options:
+          path: golden-era
+
+      - name: quote
+        label: Frase de destaque
+        type: text
+
+      - name: historical_context
+        label: Contexto histórico
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: instruments
+        label: Instrumentos e características
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: significance
+        label: Importância histórica
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: conclusion
+        label: Conclusão
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: tags
+        label: Tags
+        type: string
+
+      - name: credits
+        label: Créditos
+        type: text
+
+      - name: body
+        label: Conteúdo editorial legado
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+
+  # ============================================================
+  # MATERIAL STORIES
+  # ============================================================
+
+  - name: material_stories
+    label: Material Stories
+    type: collection
+    path: content/material-stories
+    format: yaml-frontmatter
+    filename: "{ref}.md"
+
+    view:
+      primary: title
+      fields: [ref, title, year, status]
+      sort: [year, title]
+      default:
+        sort: year
+        order: desc
+
+    fields:
+
+      - name: ref
+        label: Código
+        type: string
+        required: true
+        pattern: '^[A-Z]{2}-MS-[0-9]{3}$'
+
+      - name: title
+        label: Título
+        type: string
+        required: true
+
+      - name: subtitle
+        label: Subtítulo
+        type: text
+
+      - name: year
+        label: Ano
+        type: number
+
+      - name: status
+        label: Status
+        type: select
+        options:
+          values:
+            - draft
+            - published
+
+      - name: excerpt
+        label: Resumo
+        type: text
+
+      - name: hero
+        label: Imagem de destaque
+        type: image
+        options:
+          path: material-stories
+
+      - name: quote
+        label: Frase de destaque
+        type: text
+
+      - name: material
+        label: Material
+        type: string
+
+      - name: origin
+        label: Origem e contexto
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: characteristics
+        label: Características
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: application
+        label: Aplicação na construção
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: aging
+        label: Envelhecimento e comportamento
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: conclusion
+        label: Conclusão
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: tags
+        label: Tags
+        type: string
+
+      - name: credits
+        label: Créditos
+        type: text
+
+      - name: body
+        label: Conteúdo editorial legado
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+
+  # ============================================================
+  # INSTRUMENT HERITAGE
+  # ============================================================
+
+  - name: instrument_heritage
+    label: Instrument Heritage
+    type: collection
+    path: content/instrument-heritage
+    format: yaml-frontmatter
+    filename: "{ref}.md"
+
+    view:
+      primary: title
+      fields: [ref, title, year, status]
+      sort: [year, title]
+      default:
+        sort: year
+        order: desc
+
+    fields:
+
+      - name: ref
+        label: Código
+        type: string
+        required: true
+        pattern: '^[A-Z]{2}-IH-[0-9]{3}$'
+
+      - name: title
+        label: Título
+        type: string
+        required: true
+
+      - name: subtitle
+        label: Subtítulo
+        type: text
+
+      - name: year
+        label: Ano
+        type: number
+
+      - name: status
+        label: Status
+        type: select
+        options:
+          values:
+            - draft
+            - published
+
+      - name: excerpt
+        label: Resumo
+        type: text
+
+      - name: hero
+        label: Imagem de destaque
+        type: image
+        options:
+          path: instrument-heritage
+
+      - name: quote
+        label: Frase de destaque
+        type: text
+
+      - name: instrument
+        label: Instrumento
+        type: string
+
+      - name: manufacturer
+        label: Fabricante
+        type: string
+
+      - name: model
+        label: Modelo
+        type: string
+
+      - name: year_made
+        label: Ano de fabricação
+        type: number
+
+      - name: provenance
+        label: Proveniência
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: historical_significance
+        label: Importância histórica
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: condition
+        label: Estado de conservação
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: preservation
+        label: Preservação
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: legacy
+        label: Legado
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: conclusion
+        label: Conclusão
+        type: rich-text
+        options:
+          format: markdown
+          switcher: true
+
+      - name: tags
+        label: Tags
+        type: string
+
+      - name: credits
+        label: Créditos
+        type: text
+
+      - name: body
+        label: Conteúdo editorial legado
         type: rich-text
         options:
           format: markdown
