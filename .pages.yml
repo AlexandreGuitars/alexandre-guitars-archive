@@ -1,762 +1,672 @@
-media:
-  input: media
-  output: /media
-
-content:
-
-  # ============================================================
-  # BUILDER'S NOTES
-  # ============================================================
-
-  - name: builders_notes
-    label: Builder's Notes
-    type: collection
-    path: content/builders-notes
-    format: yaml-frontmatter
-    filename: "{ref}.md"
-
-    view:
-      primary: title
-      fields: [ref, title, year, status]
-      sort: [year, title]
-      default:
-        sort: year
-        order: desc
-
-    fields:
-
-      - name: ref
-        label: Código
-        type: string
-        required: true
-        pattern: '^[A-Z]{2}-BN-[0-9]{3}$'
-
-      - name: title
-        label: Título
-        type: string
-        required: true
-
-      - name: subtitle
-        label: Subtítulo
-        type: text
-
-      - name: year
-        label: Ano
-        type: number
-
-      - name: status
-        label: Status
-        type: select
-        options:
-          values:
-            - draft
-            - published
-
-      - name: excerpt
-        label: Resumo
-        type: text
-
-      - name: images
-        label: Fotografias
-        type: object
-        fields:
-
-          - name: hero
-            label: Imagem de abertura
-            type: object
-            fields:
-
-              - name: image
-                label: Fotografia
-                type: image
-                options:
-                  path: builders-notes
-
-              - name: caption
-                label: Legenda
-                type: string
-
-              - name: credit
-                label: Crédito
-                type: string
-
-          - name: image_02
-            label: Imagem 02
-            type: object
-            fields:
-
-              - name: image
-                label: Fotografia
-                type: image
-                options:
-                  path: builders-notes
-
-              - name: caption
-                label: Legenda
-                type: string
-
-              - name: credit
-                label: Crédito
-                type: string
-
-          - name: image_03
-            label: Imagem 03
-            type: object
-            fields:
-
-              - name: image
-                label: Fotografia
-                type: image
-                options:
-                  path: builders-notes
-
-              - name: caption
-                label: Legenda
-                type: string
-
-              - name: credit
-                label: Crédito
-                type: string
-
-          - name: image_04
-            label: Imagem 04
-            type: object
-            fields:
-
-              - name: image
-                label: Fotografia
-                type: image
-                options:
-                  path: builders-notes
-
-              - name: caption
-                label: Legenda
-                type: string
-
-              - name: credit
-                label: Crédito
-                type: string
-
-          - name: image_05
-            label: Imagem 05
-            type: object
-            fields:
-
-              - name: image
-                label: Fotografia
-                type: image
-                options:
-                  path: builders-notes
-
-              - name: caption
-                label: Legenda
-                type: string
-
-              - name: credit
-                label: Crédito
-                type: string
-
-          - name: image_06
-            label: Imagem 06
-            type: object
-            fields:
-
-              - name: image
-                label: Fotografia
-                type: image
-                options:
-                  path: builders-notes
-
-              - name: caption
-                label: Legenda
-                type: string
-
-              - name: credit
-                label: Crédito
-                type: string
-
-      - name: quote
-        label: Frase de destaque
-        type: text
-
-      - name: archive_observation
-        label: Observação do Archive
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: analysis
-        label: Análise
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: builder_reflection
-        label: Reflexão do Builder
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: principle
-        label: Princípio
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: conclusion
-        label: Conclusão
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: tags
-        label: Tags
-        type: string
-
-      - name: credits
-        label: Créditos
-        type: text
-
-      # Compatibilidade com os registros atuais
-      - name: body
-        label: Conteúdo editorial legado
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-
-  # ============================================================
-  # WORKSHOP RECORDS
-  # ============================================================
-
-  - name: workshop_records
-    label: Workshop Records
-    type: collection
-    path: content/workshop
-    format: yaml-frontmatter
-    filename: "{ref}.md"
-
-    view:
-      primary: title
-      fields: [ref, title, year, status]
-      sort: [year, title]
-      default:
-        sort: year
-        order: desc
-
-    fields:
-
-      - name: ref
-        label: Código
-        type: string
-        required: true
-        pattern: '^[A-Z]{2}-WR-[0-9]{3}$'
-
-      - name: title
-        label: Título
-        type: string
-        required: true
-
-      - name: subtitle
-        label: Subtítulo
-        type: text
-
-      - name: year
-        label: Ano
-        type: number
-
-      - name: status
-        label: Status
-        type: select
-        options:
-          values:
-            - draft
-            - published
-
-      - name: excerpt
-        label: Resumo
-        type: text
-
-      - name: hero
-        label: Imagem de destaque
-        type: image
-        options:
-          path: workshop
-
-      - name: instruments
-        label: Instrumentos
-        type: object
-        list:
-          collapsible:
-            summary: "{instrument} — {services}"
-        fields:
-
-          - name: instrument
-            label: Instrumento
-            type: string
-
-          - name: brand
-            label: Marca
-            type: string
-
-          - name: model
-            label: Modelo
-            type: string
-
-          - name: services
-            label: Serviços
-            type: string
-
-      - name: before_images
-        label: Fotografias de entrada
-        type: image
-        options:
-          path: workshop
-          multiple:
-            max: 20
-          unique: true
-
-      - name: workshop_images
-        label: Fotografias da oficina
-        type: image
-        options:
-          path: workshop
-          multiple:
-            max: 20
-          unique: true
-
-      - name: after_images
-        label: Fotografias depois
-        type: image
-        options:
-          path: workshop
-          multiple:
-            max: 20
-          unique: true
-
-      - name: quote
-        label: Frase de destaque
-        type: text
-
-      - name: introduction
-        label: Introdução
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: construction_note
-        label: Observação de construção
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: before_text
-        label: Estado de entrada
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: intervention
-        label: Trabalho realizado
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: after_text
-        label: Estado depois
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: conclusion
-        label: Conclusão
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: tags
-        label: Tags
-        type: string
-
-      - name: credits
-        label: Créditos
-        type: text
-
-      # Compatibilidade com os registros atuais
-      - name: body
-        label: Conteúdo editorial legado
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-
-  # ============================================================
-  # GOLDEN ERA
-  # ============================================================
-
-  - name: golden_era
-    label: Golden Era
-    type: collection
-    path: content/golden-era
-    format: yaml-frontmatter
-    filename: "{ref}.md"
-
-    view:
-      primary: title
-      fields: [ref, title, year, status]
-      sort: [year, title]
-      default:
-        sort: year
-        order: desc
-
-    fields:
-
-      - name: ref
-        label: Código
-        type: string
-        required: true
-        pattern: '^[A-Z]{2}-GE-[0-9]{3}$'
-
-      - name: title
-        label: Título
-        type: string
-        required: true
-
-      - name: subtitle
-        label: Subtítulo
-        type: text
-
-      - name: year
-        label: Ano
-        type: number
-
-      - name: status
-        label: Status
-        type: select
-        options:
-          values:
-            - draft
-            - published
-
-      - name: excerpt
-        label: Resumo
-        type: text
-
-      - name: hero
-        label: Imagem de destaque
-        type: image
-        options:
-          path: golden-era
-
-      - name: quote
-        label: Frase de destaque
-        type: text
-
-      - name: historical_context
-        label: Contexto histórico
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: instruments
-        label: Instrumentos e características
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: significance
-        label: Importância histórica
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: conclusion
-        label: Conclusão
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: tags
-        label: Tags
-        type: string
-
-      - name: credits
-        label: Créditos
-        type: text
-
-      - name: body
-        label: Conteúdo editorial legado
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-
-  # ============================================================
-  # MATERIAL STORIES
-  # ============================================================
-
-  - name: material_stories
-    label: Material Stories
-    type: collection
-    path: content/material-stories
-    format: yaml-frontmatter
-    filename: "{ref}.md"
-
-    view:
-      primary: title
-      fields: [ref, title, year, status]
-      sort: [year, title]
-      default:
-        sort: year
-        order: desc
-
-    fields:
-
-      - name: ref
-        label: Código
-        type: string
-        required: true
-        pattern: '^[A-Z]{2}-MS-[0-9]{3}$'
-
-      - name: title
-        label: Título
-        type: string
-        required: true
-
-      - name: subtitle
-        label: Subtítulo
-        type: text
-
-      - name: year
-        label: Ano
-        type: number
-
-      - name: status
-        label: Status
-        type: select
-        options:
-          values:
-            - draft
-            - published
-
-      - name: excerpt
-        label: Resumo
-        type: text
-
-      - name: hero
-        label: Imagem de destaque
-        type: image
-        options:
-          path: material-stories
-
-      - name: quote
-        label: Frase de destaque
-        type: text
-
-      - name: material
-        label: Material
-        type: string
-
-      - name: origin
-        label: Origem e contexto
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: characteristics
-        label: Características
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: application
-        label: Aplicação na construção
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: aging
-        label: Envelhecimento e comportamento
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: conclusion
-        label: Conclusão
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: tags
-        label: Tags
-        type: string
-
-      - name: credits
-        label: Créditos
-        type: text
-
-      - name: body
-        label: Conteúdo editorial legado
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-
-  # ============================================================
-  # INSTRUMENT HERITAGE
-  # ============================================================
-
-  - name: instrument_heritage
-    label: Instrument Heritage
-    type: collection
-    path: content/instrument-heritage
-    format: yaml-frontmatter
-    filename: "{ref}.md"
-
-    view:
-      primary: title
-      fields: [ref, title, year, status]
-      sort: [year, title]
-      default:
-        sort: year
-        order: desc
-
-    fields:
-
-      - name: ref
-        label: Código
-        type: string
-        required: true
-        pattern: '^[A-Z]{2}-IH-[0-9]{3}$'
-
-      - name: title
-        label: Título
-        type: string
-        required: true
-
-      - name: subtitle
-        label: Subtítulo
-        type: text
-
-      - name: year
-        label: Ano
-        type: number
-
-      - name: status
-        label: Status
-        type: select
-        options:
-          values:
-            - draft
-            - published
-
-      - name: excerpt
-        label: Resumo
-        type: text
-
-      - name: hero
-        label: Imagem de destaque
-        type: image
-        options:
-          path: instrument-heritage
-
-      - name: quote
-        label: Frase de destaque
-        type: text
-
-      - name: instrument
-        label: Instrumento
-        type: string
-
-      - name: manufacturer
-        label: Fabricante
-        type: string
-
-      - name: model
-        label: Modelo
-        type: string
-
-      - name: year_made
-        label: Ano de fabricação
-        type: number
-
-      - name: provenance
-        label: Proveniência
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: historical_significance
-        label: Importância histórica
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: condition
-        label: Estado de conservação
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: preservation
-        label: Preservação
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: legacy
-        label: Legado
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: conclusion
-        label: Conclusão
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
-
-      - name: tags
-        label: Tags
-        type: string
-
-      - name: credits
-        label: Créditos
-        type: text
-
-      - name: body
-        label: Conteúdo editorial legado
-        type: rich-text
-        options:
-          format: markdown
-          switcher: true
+```javascript
+/* ============================================================
+   BUILDER'S NOTES · CMS PHOTOGRAPHY LOADER · v2
+
+   Shared loader for:
+   AG-BN-001
+   AG-BN-002
+   AG-BN-003
+   AG-BN-004
+
+   CMS mapping:
+   Plate 01 <- images.hero
+   Plate 02 <- images.image_02
+   Plate 03 <- images.image_03
+   Plate 04 <- images.image_04
+
+   The original Archive record HTML is preserved.
+   Pages CMS remains the source of truth for images.
+   ============================================================ */
+
+(function () {
+  'use strict';
+
+  const body = document.body;
+
+  /*
+   * Only run on Builder's Notes record pages.
+   */
+  if (!body || !body.classList.contains('record-page')) {
+    return;
+  }
+
+  const ref = body.getAttribute('data-record-ref');
+
+  if (!/^AG-BN-\d{3}$/.test(ref || '')) {
+    return;
+  }
+
+  /*
+   * CMS image fields in the order they appear
+   * in the Archive record.
+   */
+  const keys = [
+    'hero',
+    'image_02',
+    'image_03',
+    'image_04'
+  ];
+
+  /*
+   * Existing photo plates from the original HTML.
+   *
+   * IMPORTANT:
+   * We are not replacing these elements.
+   * We are inserting the CMS image inside them.
+   */
+  const plates = Array.from(
+    document.querySelectorAll(
+      '.record-section .record-plate'
+    )
+  );
+
+  if (!plates.length) {
+    console.warn(
+      "Archive Builder's Notes: no record plates found."
+    );
+    return;
+  }
+
+  /*
+   * GitHub repository information.
+   */
+  const repo =
+    'AlexandreGuitars/alexandre-guitars-archive';
+
+  const branch = 'main';
+
+  const contentPath =
+    'content/builders-notes/' + ref + '.md';
+
+  /*
+   * Primary content source.
+   */
+  const rawUrl =
+    'https://raw.githubusercontent.com/' +
+    repo +
+    '/' +
+    branch +
+    '/' +
+    contentPath;
+
+  /*
+   * Fallback content source through GitHub API.
+   */
+  const apiUrl =
+    'https://api.github.com/repos/' +
+    repo +
+    '/contents/' +
+    contentPath +
+    '?ref=' +
+    branch;
+
+
+  /* ============================================================
+     IMAGE PATH EXTRACTION
+     ============================================================ */
+
+  function extractImage(markdown, key) {
+
+    if (!markdown || !key) {
+      return null;
+    }
+
+    /*
+     * Escape the field name before creating the RegExp.
+     */
+    const escapedKey = key.replace(
+      /[.*+?^${}()|[\]\\]/g,
+      '\\$&'
+    );
+
+    /*
+     * Expected Pages CMS structure:
+
+       images:
+         hero:
+           image: /media/example.jpg
+
+         image_02:
+           image: /media/example.jpg
+
+     * We intentionally read the nested "image" field.
+     */
+    const regex = new RegExp(
+      '(?:^|\\n)' +
+      '\\s*' +
+      escapedKey +
+      ':\\s*\\n' +
+      '\\s*image:\\s*[\'"]?([^\'"\\s]+)',
+      'm'
+    );
+
+    const match = markdown.match(regex);
+
+    if (!match) {
+      return null;
+    }
+
+    const value = match[1].trim();
+
+    if (!value) {
+      return null;
+    }
+
+    /*
+     * Only accept local media paths or HTTP URLs.
+     */
+    if (
+      value.indexOf('/media/') === 0 ||
+      /^https?:\/\//i.test(value)
+    ) {
+      return value;
+    }
+
+    return null;
+  }
+
+
+  /* ============================================================
+     URL RESOLUTION
+     ============================================================ */
+
+  function absoluteMediaUrl(url) {
+
+    if (!url) {
+      return null;
+    }
+
+    /*
+     * Already an absolute URL.
+     */
+    if (/^https?:\/\//i.test(url)) {
+      return url;
+    }
+
+    /*
+     * Resolve /media/... against the current Archive domain.
+     */
+    if (url.indexOf('/media/') === 0) {
+      return new URL(
+        url,
+        window.location.origin
+      ).href;
+    }
+
+    return null;
+  }
+
+
+  /*
+   * If the Archive domain cannot serve the image for some reason,
+   * try the same file directly from GitHub Raw.
+   */
+  function rawMediaUrl(url) {
+
+    if (
+      !url ||
+      url.indexOf('/media/') !== 0
+    ) {
+      return null;
+    }
+
+    return (
+      'https://raw.githubusercontent.com/' +
+      repo +
+      '/' +
+      branch +
+      url
+    );
+  }
+
+
+  /* ============================================================
+     BASE64 DECODER
+     ============================================================ */
+
+  function decodeBase64Utf8(value) {
+
+    const binary = atob(
+      value.replace(/\s/g, '')
+    );
+
+    const bytes = new Uint8Array(
+      binary.length
+    );
+
+    for (
+      let i = 0;
+      i < binary.length;
+      i++
+    ) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+
+    return new TextDecoder(
+      'utf-8'
+    ).decode(bytes);
+  }
+
+
+  /* ============================================================
+     FETCH CMS MARKDOWN
+     ============================================================ */
+
+  async function fetchMarkdown() {
+
+    /*
+     * First attempt:
+     * GitHub Raw.
+     */
+    try {
+
+      const response = await fetch(
+        rawUrl + '?v=' + Date.now(),
+        {
+          cache: 'no-store'
+        }
+      );
+
+      if (response.ok) {
+
+        const text =
+          await response.text();
+
+        /*
+         * Make sure we actually received Markdown
+         * containing the expected CMS structure.
+         *
+         * If GitHub returns an unexpected response,
+         * continue to the API fallback.
+         */
+        if (
+          /images:\s*\n/.test(text) ||
+          /(?:^|\n)\s*hero:\s*\n/.test(text)
+        ) {
+          return text;
+        }
+      }
+
+    } catch (error) {
+
+      console.warn(
+        "Archive: GitHub Raw content unavailable. " +
+        "Trying GitHub API.",
+        error
+      );
+    }
+
+
+    /*
+     * Second attempt:
+     * GitHub Contents API.
+     */
+    const apiResponse = await fetch(
+      apiUrl,
+      {
+        cache: 'no-store',
+        headers: {
+          Accept:
+            'application/vnd.github+json'
+        }
+      }
+    );
+
+    if (!apiResponse.ok) {
+
+      throw new Error(
+        'GitHub content unavailable: HTTP ' +
+        apiResponse.status
+      );
+    }
+
+    const data =
+      await apiResponse.json();
+
+    if (!data.content) {
+
+      throw new Error(
+        'GitHub API response has no content field.'
+      );
+    }
+
+    return decodeBase64Utf8(
+      data.content
+    );
+  }
+
+
+  /* ============================================================
+     IMAGE CANDIDATES
+     ============================================================ */
+
+  function candidateImageUrls(cmsPath) {
+
+    const candidates = [];
+
+    if (!cmsPath) {
+      return candidates;
+    }
+
+    /*
+     * If CMS contains an absolute URL,
+     * use it directly.
+     */
+    if (/^https?:\/\//i.test(cmsPath)) {
+
+      candidates.push(cmsPath);
+
+      return candidates;
+    }
+
+    /*
+     * Local Archive URL.
+     */
+    const sameOrigin =
+      absoluteMediaUrl(cmsPath);
+
+    if (sameOrigin) {
+      candidates.push(sameOrigin);
+    }
+
+    /*
+     * GitHub Raw fallback.
+     */
+    const githubRaw =
+      rawMediaUrl(cmsPath);
+
+    if (
+      githubRaw &&
+      githubRaw !== sameOrigin
+    ) {
+      candidates.push(githubRaw);
+    }
+
+    return candidates;
+  }
+
+
+  /* ============================================================
+     LOAD IMAGE INTO RECORD PLATE
+     ============================================================ */
+
+  function loadImage(
+    plate,
+    key,
+    cmsPath
+  ) {
+
+    if (!plate || !cmsPath) {
+      return;
+    }
+
+    const candidates =
+      candidateImageUrls(cmsPath);
+
+    if (!candidates.length) {
+      return;
+    }
+
+    plate.classList.add(
+      'cms-photo-ready'
+    );
+
+
+    /*
+     * Existing placeholder text.
+     *
+     * Example:
+     * "Fretless Fingerboard · Intonation by Hand · Archive Photography"
+     */
+    const placeholder =
+      plate.querySelector('span');
+
+    if (placeholder) {
+
+      placeholder.classList.add(
+        'record-placeholder-label'
+      );
+    }
+
+
+    /*
+     * Create image.
+     */
+    const image =
+      document.createElement('img');
+
+    image.className =
+      'cms-record-image';
+
+    image.alt = '';
+
+    /*
+     * Eager loading is intentional here.
+     * These images are important visual elements of the record.
+     */
+    image.loading = 'eager';
+
+    image.decoding = 'async';
+
+
+    /*
+     * Preserve the original placeholder text
+     * as the photographic caption.
+     */
+    const caption =
+      document.createElement('span');
+
+    caption.className =
+      'cms-record-caption';
+
+    caption.textContent =
+      placeholder
+        ? placeholder.textContent.trim()
+        : '';
+
+
+    /*
+     * Candidate index.
+     */
+    let candidateIndex = 0;
+
+
+    /*
+     * Try the next available image source.
+     */
+    function tryNext() {
+
+      if (
+        candidateIndex >=
+        candidates.length
+      ) {
+
+        console.warn(
+          "Archive: all image sources failed.",
+          {
+            record: ref,
+            field: key,
+            path: cmsPath,
+            candidates: candidates
+          }
+        );
+
+        image.remove();
+        caption.remove();
+
+        plate.classList.remove(
+          'cms-photo-loaded'
+        );
+
+        return;
+      }
+
+
+      const candidate =
+        candidates[candidateIndex];
+
+      candidateIndex += 1;
+
+      console.log(
+        "Archive: trying CMS image",
+        ref,
+        key,
+        candidate
+      );
+
+      image.src = candidate;
+    }
+
+
+    /*
+     * Image successfully loaded.
+     */
+    image.addEventListener(
+      'load',
+      function () {
+
+        plate.classList.add(
+          'cms-photo-loaded'
+        );
+
+        /*
+         * Hide the original placeholder
+         * because the photo is now present.
+         */
+        if (placeholder) {
+
+          placeholder.style.display =
+            'none';
+        }
+
+        /*
+         * Add caption.
+         */
+        if (
+          caption.textContent &&
+          !plate.contains(caption)
+        ) {
+
+          plate.appendChild(
+            caption
+          );
+        }
+
+        console.log(
+          "Archive: CMS image loaded",
+          ref,
+          key,
+          image.currentSrc || image.src
+        );
+      },
+      {
+        once: true
+      }
+    );
+
+
+    /*
+     * Current image source failed.
+     *
+     * Try the next candidate instead of
+     * abandoning the CMS image.
+     */
+    image.addEventListener(
+      'error',
+      function () {
+
+        console.warn(
+          "Archive: image source failed",
+          ref,
+          key,
+          image.src
+        );
+
+        tryNext();
+      }
+    );
+
+
+    /*
+     * Insert the image into the EXISTING plate.
+     *
+     * This is what preserves the original
+     * Builder's Notes record design.
+     */
+    plate.insertBefore(
+      image,
+      plate.firstChild
+    );
+
+
+    /*
+     * Start loading.
+     */
+    tryNext();
+  }
+
+
+  /* ============================================================
+     INITIALIZATION
+     ============================================================ */
+
+  fetchMarkdown()
+
+    .then(function (markdown) {
+
+      console.log(
+        "Archive Builder's Notes: CMS content loaded.",
+        ref
+      );
+
+
+      keys.forEach(
+        function (key, index) {
+
+          const cmsPath =
+            extractImage(
+              markdown,
+              key
+            );
+
+          if (
+            cmsPath &&
+            plates[index]
+          ) {
+
+            loadImage(
+              plates[index],
+              key,
+              cmsPath
+            );
+
+          } else {
+
+            console.log(
+              "Archive Builder's Notes: no CMS image for",
+              ref,
+              key
+            );
+          }
+        }
+      );
+    })
+
+    .catch(function (error) {
+
+      /*
+       * If CMS cannot be reached,
+       * the original Archive placeholders remain.
+       *
+       * This prevents the page from breaking.
+       */
+      console.warn(
+        "Archive Builder's Notes: CMS photography " +
+        "could not be loaded. Original placeholders " +
+        "will remain visible.",
+        error
+      );
+    });
+
+})();
+```
