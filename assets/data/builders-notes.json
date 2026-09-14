@@ -1,1 +1,13 @@
-{}\n
+{
+  "AG-BN-001": {},
+  "AG-BN-002": {},
+  "AG-BN-003": {
+    "hero": "/media/alexandre-1.png",
+    "image_02": "/media/alexandre.png",
+    "image_03": "/media/alexandre-2.png"
+  },
+  "AG-BN-004": {
+    "hero": "/media/1-1.jpg",
+    "image_02": "/media/1000170281.jpg"
+  }
+}
