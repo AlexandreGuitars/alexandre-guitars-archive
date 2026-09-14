@@ -7,7 +7,7 @@ excerpt: A N4 nasceu de uma combinação pouco convencional de arquitetura,
   componentes e intenção.
 images:
   hero:
-    image: /media/2.jpg
+    image: /media/1.png
   image_02:
     image: /media/3.jpg
 quote: Uma guitarra reconhecível antes mesmo de ser tocada.
