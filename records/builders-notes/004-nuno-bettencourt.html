@@ -3,92 +3,538 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Builder's Notes #004 — Nuno Bettencourt — Alexandre Guitars</title>
-<meta name="description" content="AG-BN-004 — Builder's Notes sobre Nuno Bettencourt. Alexandre Guitars Archive.">
-<link rel="stylesheet" href="../../assets/css/archive.css">
+<title>Builder's Notes #003 — Jaco Pastorius — Alexandre Guitars</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: #0e0b07;
+  padding: 48px 24px;
+  font-family: 'IM Fell English', serif;
+}
+
+/* ─────────────────────────────
+   SCALER
+───────────────────────────── */
+.carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+}
+
+.slide-wrap {
+  width: 1080px;
+  height: 1350px;
+  transform-origin: top center;
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────
+   BASE CANVAS
+───────────────────────────── */
+.slide {
+  width: 1080px;
+  height: 1350px;
+  position: relative;
+  overflow: hidden;
+  background: #f2e4c0;
+}
+
+/* Layer 1 — paper fibers + foxing + edge aging */
+.slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image:
+    /* horizontal fibers */
+    repeating-linear-gradient(1deg,
+      transparent 0px, transparent 2px,
+      rgba(139,94,42,0.016) 2px, rgba(139,94,42,0.016) 3px),
+    /* vertical fibers */
+    repeating-linear-gradient(91deg,
+      transparent 0px, transparent 8px,
+      rgba(139,94,42,0.009) 8px, rgba(139,94,42,0.009) 9px),
+    /* foxing patches */
+    radial-gradient(ellipse 180px 120px at 7%  11%, rgba(139,94,42,0.09) 0%, transparent 100%),
+    radial-gradient(ellipse 90px  70px  at 94% 85%, rgba(139,94,42,0.07) 0%, transparent 100%),
+    radial-gradient(ellipse 70px  50px  at 80% 4%,  rgba(139,94,42,0.05) 0%, transparent 100%),
+    radial-gradient(ellipse 55px  80px  at 2%  92%, rgba(139,94,42,0.06) 0%, transparent 100%),
+    radial-gradient(ellipse 40px  28px  at 48% 98%, rgba(139,94,42,0.04) 0%, transparent 100%),
+    radial-gradient(ellipse 30px  20px  at 20% 50%, rgba(139,94,42,0.03) 0%, transparent 100%),
+    /* warm center / aged edges vignette */
+    radial-gradient(ellipse 90% 85% at 50% 50%,
+      rgba(255,248,230,0.18) 0%,
+      transparent 60%),
+    radial-gradient(ellipse 120% 120% at 50% 50%,
+      transparent 52%,
+      rgba(139,94,42,0.16) 100%);
+  mix-blend-mode: multiply;
+}
+
+/* Layer 2 — film grain */
+.slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.11;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+  mix-blend-mode: multiply;
+}
+
+/* ─────────────────────────────
+   COMPASS STAR WATERMARK
+───────────────────────────── */
+.compass {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px;
+  height: 480px;
+  z-index: 3;
+  opacity: 0.038;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────
+   CHROME
+───────────────────────────── */
+.chrome { position:absolute; inset:0; z-index:10; pointer-events:none; }
+
+.rule-h {
+  position: absolute;
+  left: 64px; right: 64px;
+  height: 1px;
+  background: rgba(13,7,3,0.12);
+}
+
+.hd {
+  position: absolute;
+  top: 40px; left: 64px; right: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.ft {
+  position: absolute;
+  bottom: 40px; left: 64px; right: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+/* archive stamp */
+.stamp {
+  position: absolute;
+  right: 64px;
+  top: 88px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 3.5px;
+  color: rgba(13,7,3,0.3);
+  text-transform: uppercase;
+  text-align: right;
+  line-height: 2.1;
+  z-index: 11;
+}
+
+/* ghost annotation — barely visible handwriting effect */
+.annotation {
+  position: absolute;
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: rgba(139,94,42,0.06);
+  transform: rotate(-2deg);
+  pointer-events: none;
+  z-index: 4;
+  letter-spacing: 1px;
+  line-height: 1.6;
+}
+
+/* ─────────────────────────────
+   TYPE SCALE
+───────────────────────────── */
+.ty-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 8px;
+  color: rgba(13,7,3,0.55);
+  text-transform: uppercase;
+}
+
+.ty-ref {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 4px;
+  color: rgba(13,7,3,0.35);
+  text-transform: uppercase;
+}
+
+.ty-series {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-weight: 300;
+  letter-spacing: 7px;
+  color: #8b5e2a;
+  text-transform: uppercase;
+}
+
+.ty-cat {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 4px;
+  color: rgba(13,7,3,0.28);
+  text-transform: uppercase;
+}
+
+.ty-h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 100px;
+  font-weight: 700;
+  line-height: 0.92;
+  color: #0d0703;
+  letter-spacing: -1px;
+}
+
+.ty-h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 68px;
+  font-weight: 600;
+  line-height: 1.0;
+  color: #0d0703;
+}
+
+.ty-h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 1.05;
+  color: #0d0703;
+}
+
+.ty-section {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 5px;
+  color: rgba(13,7,3,0.38);
+  text-transform: uppercase;
+}
+
+.ty-body {
+  font-family: 'IM Fell English', serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: rgba(13,7,3,0.7);
+}
+
+.ty-body-i {
+  font-family: 'IM Fell English', serif;
+  font-size: 30px;
+  font-style: italic;
+  line-height: 1.8;
+  color: rgba(13,7,3,0.58);
+}
+
+.ty-word {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.5;
+  color: #8b5e2a;
+}
+
+.ty-tagline {
+  font-family: 'IM Fell English', serif;
+  font-size: 21px;
+  font-style: italic;
+  color: rgba(13,7,3,0.42);
+}
+
+.gold-rule {
+  width: 44px;
+  height: 1px;
+  background: #d4a843;
+  opacity: 0.5;
+}
+
+/* ─────────────────────────────
+   PHOTO BLOCKS
+───────────────────────────── */
+.photo {
+  position: absolute;
+  overflow: hidden;
+}
+
+.photo-base {
+  position: absolute; inset: 0;
+}
+
+/* B&W tones per subject */
+.ph-bridge  { background: linear-gradient(150deg, #ccc0a0 0%, #b0a080 30%, #bfb090 55%, #9a8a68 80%, #b8aa88 100%); }
+.ph-fret    { background: linear-gradient(150deg, #c8bc98 0%, #b0a278 30%, #bdb090 55%, #989070 80%, #b4a888 100%); }
+.ph-nitro   { background: linear-gradient(150deg, #d0c4a4 0%, #bcae88 30%, #c8bc98 55%, #a89878 80%, #c0b498 100%); }
+.ph-grain   { background: linear-gradient(150deg, #c4b894 0%, #b0a274 30%, #bcb08a 55%, #a09068 80%, #b8ac88 100%); }
+.ph-screw   { background: linear-gradient(150deg, #b8ae8e 0%, #a09678 30%, #b0a888 55%, #908068 80%, #aaa490 100%); }
+.ph-pickup  { background: linear-gradient(150deg, #cec298 0%, #b8ac84 30%, #c4ba96 55%, #a89c78 80%, #c0b898 100%); }
+
+/* grain + figure overlay shared */
+.ph-grain-lines {
+  position:absolute; inset:0;
+  background-image:
+    repeating-linear-gradient(0deg,
+      rgba(255,255,255,0) 0px, rgba(255,255,255,0) 4px,
+      rgba(200,185,155,0.1) 4px, rgba(200,185,155,0.1) 5px),
+    repeating-linear-gradient(0deg,
+      rgba(255,255,255,0) 0px, rgba(255,255,255,0) 12px,
+      rgba(140,118,85,0.07) 12px, rgba(140,118,85,0.07) 13px);
+}
+
+.ph-figure {
+  position:absolute; inset:0;
+  background-image:
+    radial-gradient(ellipse 220% 25% at 50% 22%, rgba(180,162,125,0.13) 0%, transparent 100%),
+    radial-gradient(ellipse 220% 18% at 42% 58%, rgba(140,115,80,0.09) 0%, transparent 100%),
+    radial-gradient(ellipse 220% 22% at 62% 82%, rgba(160,138,98,0.11) 0%, transparent 100%);
+}
+
+.ph-noise {
+  position:absolute; inset:0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)' opacity='0.065'/%3E%3C/svg%3E") center/270px;
+  mix-blend-mode: multiply;
+}
+
+.ph-vignette {
+  position:absolute; inset:0;
+  background: linear-gradient(165deg, rgba(13,7,3,0.0) 30%, rgba(13,7,3,0.28) 100%);
+}
+
+.ph-label {
+  position:absolute; bottom:18px; left:22px; right:22px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  letter-spacing: 3.5px;
+  color: rgba(13,7,3,0.28);
+  text-transform: uppercase;
+  z-index: 3;
+}
+
+/* fade-to-paper edges */
+.ph-fade-bottom {
+  position:absolute; bottom:0; left:0; right:0; height:140px;
+  background: linear-gradient(0deg, #f2e4c0 0%, rgba(242,228,192,0) 100%);
+  z-index: 4;
+}
+
+.ph-fade-right {
+  position:absolute; top:0; right:0; bottom:0; width:120px;
+  background: linear-gradient(90deg, rgba(242,228,192,0) 0%, #f2e4c0 100%);
+  z-index: 4;
+}
+
+
+/* CMS IMAGES — source: content/builders-notes/AG-BN-004.md */
+.cms-photo-image {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  filter:saturate(0.78) contrast(1.04) sepia(0.08);
+}
+.cms-photo-image + .cms-photo-tint {
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  background:
+    linear-gradient(150deg, rgba(13,7,3,0.42) 0%, rgba(139,94,42,0.18) 52%, rgba(212,168,67,0.08) 100%),
+    linear-gradient(180deg, rgba(13,7,3,0.02) 35%, rgba(13,7,3,0.58) 100%);
+  mix-blend-mode:multiply;
+}
+.cms-photo-image--detail + .cms-photo-tint {
+  background:
+    linear-gradient(270deg, rgba(13,7,3,0.12), rgba(139,94,42,0.20) 45%, rgba(13,7,3,0.56) 100%),
+    linear-gradient(180deg, rgba(13,7,3,0.02), rgba(13,7,3,0.34));
+}
+</style>
 </head>
-<body class="record-page record-technical">
-<header class="site-header">
-  <div class="header-row">
-    <a class="brand" href="../../index.html" aria-label="Alexandre Guitars Archive">
-      <div class="brand-lockup"><img src="../../assets/img/alexandre-guitars-logo.png" alt="Alexandre Guitars"><span class="archive-word">Archive</span></div>
-    </a>
-    <nav class="nav" aria-label="Navegação principal">
-      <a href="../../index.html">Arquivo</a>
-      <a href="../../manifesto.html">Manifesto</a>
-      <a href="../../series/builders-notes.html" aria-current="page">Builder's Notes</a>
-    </nav>
+
+<body>
+<div class="carousel">
+
+<!-- SLIDE 01 — CAPA -->
+<div class="slide-wrap"><div class="slide">
+  <svg class="compass" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="100,10 106,94 100,100 94,94" fill="#0d0703"/><polygon points="100,190 106,106 100,100 94,106" fill="#0d0703"/>
+    <polygon points="10,100 94,94 100,100 94,106" fill="#0d0703"/><polygon points="190,100 106,94 100,100 106,106" fill="#0d0703"/>
+    <circle cx="100" cy="100" r="6" stroke="#0d0703" stroke-width="1" fill="none"/><circle cx="100" cy="100" r="2" fill="#0d0703"/>
+    <circle cx="100" cy="100" r="40" stroke="#0d0703" stroke-width="0.5" fill="none"/><circle cx="100" cy="100" r="55" stroke="#0d0703" stroke-width="0.3" fill="none"/>
+    <line x1="60" y1="100" x2="140" y2="100" stroke="#0d0703" stroke-width="0.4"/><line x1="100" y1="60" x2="100" y2="140" stroke="#0d0703" stroke-width="0.4"/>
+  </svg>
+  <div class="annotation" style="top:320px;left:58px;opacity:0.05;">forma · função · identidade</div>
+  <div class="annotation" style="bottom:280px;right:60px;transform:rotate(1.5deg);font-size:15px;">AG · ateliê · 2026</div>
+
+  <div class="photo ph-bridge" data-cms-image="hero" style="top:0;left:0;right:0;height:760px; background:#3b3327;">
+    <img class="cms-photo-image" src="/media/1-1.jpg" alt="Nuno Bettencourt · N4 · fotografia de arquivo">
+    <div class="cms-photo-tint"></div>
+    <div class="ph-noise photo-base"></div>
+    <div class="ph-vignette photo-base" style="background:linear-gradient(180deg,rgba(13,7,3,0.03) 0%,rgba(13,7,3,0.34) 100%);"></div>
+    <div class="ph-fade-bottom"></div>
+    <div class="ph-label">N4 · Natural Finish · Archive Reference</div>
   </div>
-</header>
-<main class="site-main">
-  <section class="record-hero">
-    <div>
-      <div class="record-kicker">AG-BN-004 · forma · função · identidade · 2026</div>
-      <h1 class="record-title">Nuno Bettencourt</h1>
-      <p class="record-subtitle">Uma guitarra não precisa de excesso para ser única.</p>
+  <div class="chrome"><div class="hd"><span class="ty-logo">Alexandre Guitars</span><span class="ty-ref">01 / 06</span></div>
+    <div class="rule-h" style="top:82px;"></div><div class="stamp">Builder's Notes<br>AG-BN-004</div><div class="rule-h" style="bottom:82px;"></div>
+    <div class="ft"><span class="ty-cat">Builder's Notes · Collection</span><span class="ty-cat">© Alexandre Guitars</span></div>
+  </div>
+  <div style="position:absolute;top:770px;left:64px;right:64px;bottom:104px;z-index:5;display:flex;flex-direction:column;justify-content:center;">
+    <div class="ty-series" style="margin-bottom:20px;">Builder's Notes · Nº 004</div><div class="gold-rule" style="margin-bottom:30px;"></div>
+    <div class="ty-h1" style="font-size:86px;margin-bottom:28px;">Nuno<br>Bettencourt</div>
+    <div class="ty-body-i" style="font-size:28px;line-height:1.7;max-width:700px;margin-bottom:38px;">Uma guitarra não precisa<br>de excesso para ser única.</div>
+    <div style="display:flex;align-items:center;gap:16px;"><div style="width:28px;height:1px;background:rgba(13,7,3,0.18);"></div><span class="ty-cat" style="font-size:12px;">The N4 · Signature as identity</span></div>
+  </div>
+</div></div>
+
+<!-- SLIDE 02 — A FORMA -->
+<div class="slide-wrap"><div class="slide">
+  <svg class="compass" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="50" stroke="#0d0703" stroke-width="0.4" fill="none"/><circle cx="100" cy="100" r="6" stroke="#0d0703"/><circle cx="100" cy="100" r="2" fill="#0d0703"/></svg>
+  <div class="annotation" style="top:230px;left:55px;">geometria · acesso · equilíbrio</div>
+  <div class="annotation" style="bottom:300px;right:55px;transform:rotate(1deg);font-size:14px;">BN-004 / form</div>
+
+  <div class="photo" style="left:56px;top:150px;width:360px;height:980px;background:linear-gradient(160deg,#1c1711 0%,#8b6b41 55%,#c8b07c 100%);">
+    <div class="ph-grain-lines photo-base"></div><div class="ph-noise photo-base"></div><div class="ph-vignette photo-base"></div>
+    <div class="ph-label" style="color:rgba(242,228,192,0.55);">Stephen's Extended Cutaway</div>
+  </div>
+  <div class="chrome"><div class="hd"><span class="ty-ref">AG-BN-004</span><span class="ty-ref">02 / 06</span></div><div class="rule-h" style="top:82px"></div><div class="stamp">Form Study<br>N4</div><div class="rule-h" style="bottom:82px"></div><div class="ft"><span class="ty-cat">Builder's Notes · Collection</span><span class="ty-cat">Alexandre Guitars</span></div></div>
+  <div style="position:absolute;top:150px;left:468px;right:64px;bottom:104px;z-index:5;display:flex;flex-direction:column;justify-content:center;padding-top:20px;">
+    <div class="ty-section" style="margin-bottom:24px;">The shape</div><div class="gold-rule" style="margin-bottom:36px;"></div>
+    <div class="ty-body" style="font-size:30px;line-height:1.82;max-width:500px;margin-bottom:28px;">O N4 não nasceu para ser apenas mais uma superstrat.</div>
+    <div style="width:28px;height:1px;background:rgba(13,7,3,0.14);margin:4px 0 28px;"></div>
+    <div class="ty-body-i" style="font-size:29px;line-height:1.8;max-width:510px;margin-bottom:28px;">Seu corpo foi desenvolvido com o luthier Stephen Davies, incluindo o <i>Stephen's Extended Cutaway</i>, pensado para facilitar o acesso às casas mais altas.</div>
+    <div class="ty-word" style="font-size:35px;max-width:500px;">Função transformada em identidade.</div>
+  </div>
+</div></div>
+
+<!-- SLIDE 03 — O EXCESSO AUSENTE -->
+<div class="slide-wrap"><div class="slide">
+  <svg class="compass" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="42" stroke="#0d0703" stroke-width="0.4" fill="none"/><line x1="45" y1="100" x2="155" y2="100" stroke="#0d0703" stroke-width="0.3"/><line x1="100" y1="45" x2="100" y2="155" stroke="#0d0703" stroke-width="0.3"/></svg>
+  <div class="annotation" style="top:220px;right:55px;transform:rotate(-1.5deg);">controles · escala · silêncio</div>
+  <div class="annotation" style="bottom:260px;left:55px;font-size:14px;">princípio BN-004</div>
+  <div class="chrome"><div class="hd"><span class="ty-logo">Alexandre Guitars</span><span class="ty-ref">03 / 06</span></div><div class="rule-h" style="top:82px"></div><div class="stamp">Minimal Control<br>N4</div><div class="rule-h" style="bottom:82px"></div><div class="ft"><span class="ty-cat">Builder's Notes · Collection</span><span class="ty-cat">AG-BN-004</span></div></div>
+
+  <div style="position:absolute;top:110px;left:72px;right:72px;bottom:130px;z-index:5;display:flex;flex-direction:column;justify-content:center;">
+    <div class="ty-section" style="margin-bottom:24px;">Minimal control</div><div class="gold-rule" style="margin-bottom:40px;"></div>
+    <div class="ty-h2" style="font-size:72px;max-width:800px;margin-bottom:34px;">Um volume.<br>Uma chave.<br>Nenhum excesso.</div>
+    <div style="width:34px;height:1px;background:rgba(13,7,3,0.14);margin-bottom:30px;"></div>
+    <div class="ty-body" style="font-size:30px;line-height:1.85;max-width:720px;">A N4 sempre privilegiou uma configuração direta: um volume, chave de três posições e uma ponte Floyd Rose — um conjunto pensado para tocar, não para impressionar pela quantidade.</div>
+    <div class="ty-word" style="font-size:40px;margin-top:34px;max-width:700px;">A personalidade está no que permanece.</div>
+  </div>
+</div></div>
+
+<!-- SLIDE 04 — O SOM TEM UMA FORMA -->
+<div class="slide-wrap"><div class="slide">
+  <svg class="compass" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="55" stroke="#0d0703" stroke-width="0.4" fill="none"/><circle cx="100" cy="100" r="18" stroke="#0d0703" stroke-width="0.4" fill="none"/></svg>
+  <div class="annotation" style="top:190px;left:55px;">L-500 · '59 · resposta</div><div class="annotation" style="bottom:230px;right:55px;font-size:14px;transform:rotate(1deg);">tone study / N4</div>
+  <div class="photo" data-cms-image="image_02" style="right:0;top:0;width:450px;height:100%;background:#3b3327;">
+    <img class="cms-photo-image cms-photo-image--detail" src="/media/1000170281.jpg" alt="N4 · detalhe · fotografia de arquivo">
+    <div class="cms-photo-tint"></div>
+    <div class="ph-noise photo-base"></div>
+    <div class="ph-vignette photo-base" style="background:linear-gradient(270deg,rgba(13,7,3,0.05),rgba(13,7,3,0.38));"></div>
+    <div class="ph-fade-right" style="left:0;right:auto;width:150px;background:linear-gradient(270deg,rgba(242,228,192,0) 0%,#f2e4c0 100%);"></div>
+    <div class="ph-label" style="left:auto;right:18px;text-align:right;">Pickup Architecture · N4</div>
+  </div>
+  <div class="chrome"><div class="hd"><span class="ty-ref">AG-BN-004</span><span class="ty-ref">04 / 06</span></div><div class="rule-h" style="top:82px"></div><div class="stamp">Sound & Hardware<br>Archive</div><div class="rule-h" style="bottom:82px"></div><div class="ft"><span class="ty-cat">Builder's Notes · Collection</span><span class="ty-cat">Alexandre Guitars</span></div></div>
+  <div style="position:absolute;top:130px;left:64px;width:560px;bottom:110px;z-index:5;display:flex;flex-direction:column;justify-content:center;">
+    <div class="ty-section" style="margin-bottom:24px;">The sound has a shape</div><div class="gold-rule" style="margin-bottom:36px;"></div>
+    <div class="ty-body" style="font-size:30px;line-height:1.82;max-width:520px;">O som do Nuno também está desenhado na arquitetura do instrumento.</div>
+    <div style="width:28px;height:1px;background:rgba(13,7,3,0.14);margin:28px 0;"></div>
+    <div class="ty-body-i" style="font-size:28px;line-height:1.8;max-width:520px;">A combinação histórica de Bill Lawrence L-500 no braço da ponte e Seymour Duncan '59 no braço se tornou parte do vocabulário da N4.</div>
+    <div class="ty-tagline" style="margin-top:26px;max-width:520px;">Hardware não substitui identidade. Ele a serve.</div>
+  </div>
+</div></div>
+
+<!-- SLIDE 05 — SEM ACABAMENTO -->
+<div class="slide-wrap"><div class="slide">
+  <svg class="compass" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="42" stroke="#0d0703" stroke-width="0.4" fill="none"/><path d="M70 100h60M100 70v60" stroke="#0d0703" stroke-width="0.3"/></svg>
+  <div class="annotation" style="top:180px;right:55px;transform:rotate(-1deg);">natural · raw · response</div><div class="annotation" style="bottom:250px;left:55px;font-size:14px;">material note / N4</div>
+  <div class="chrome"><div class="hd"><span class="ty-logo">Alexandre Guitars</span><span class="ty-ref">05 / 06</span></div><div class="rule-h" style="top:82px"></div><div class="stamp">Material Note<br>Natural Finish</div><div class="rule-h" style="bottom:82px"></div><div class="ft"><span class="ty-cat">Builder's Notes · Collection</span><span class="ty-cat">AG-BN-004</span></div></div>
+  <div style="position:absolute;top:116px;left:64px;right:64px;bottom:116px;z-index:5;display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;">
+    <div><div class="ty-section" style="margin-bottom:24px;">Finish as philosophy</div><div class="gold-rule" style="margin-bottom:34px;"></div>
+      <div class="ty-h3" style="font-size:58px;max-width:600px;margin-bottom:26px;">O natural não é ausência.<br>É uma escolha.</div>
+      <div class="ty-body" style="font-size:28px;line-height:1.82;max-width:600px;">Bettencourt ficou associado às N4 sem pintura, valorizando a sensação e a resposta de instrumentos com acabamento natural. Em entrevista, explicou que não gostava do resultado sonoro de suas guitarras quando passaram a receber pintura.</div>
     </div>
-    <aside class="record-index">
-      <p class="meta-label">Collection</p><p class="meta-value">Builder's Notes</p>
-      <p class="meta-label">Archive ID</p><p class="meta-value">AG-BN-004</p>
-      <p class="meta-label">Department</p><p class="meta-value">Archive Editorial</p>
-      <div class="record-mark">Alexandre Guitars · São Paulo</div>
-    </aside>
-  </section>
-  <div class="record-body">
-    <section class="record-section">
-  <div class="record-no">01 / 04</div>
-  <div class="record-section-main">
-    <p class="section-label">Form Study</p>
-    <h2>The shape</h2>
-    <p>O N4 não nasceu para ser apenas mais uma superstrat. Seu corpo foi desenvolvido com o luthier Stephen Davies, incluindo o Stephen's Extended Cutaway, pensado para facilitar o acesso às casas mais altas. Função transformada em identidade.</p>
-    <p class="observation">geometria · acesso · equilíbrio</p>
-    <div class="record-plate"><span>Stephen's Extended Cutaway</span></div>
+    <div style="border-left:1px solid rgba(13,7,3,0.1);padding-left:48px;">
+      <div class="ty-word" style="font-size:44px;margin-bottom:24px;">“Meu” instrumento.</div>
+      <div class="ty-body-i" style="font-size:26px;line-height:1.8;">Mais importante do que adicionar detalhes foi retirar o que não era necessário — até que a guitarra parecesse inevitavelmente dele.</div>
+      <div class="ty-cat" style="margin-top:28px;">A identidade começa onde a decoração termina.</div>
+    </div>
   </div>
-  <aside class="record-aside"><strong>Archive reference</strong><p>geometria · acesso · equilíbrio</p><strong>Visual note</strong><p>Stephen's Extended Cutaway</p></aside>
-</section><section class="record-section">
-  <div class="record-no">02 / 04</div>
-  <div class="record-section-main">
-    <p class="section-label">Minimal Control</p>
-    <h2>Minimal control</h2>
-    <p>Um volume. Uma chave. Nenhum excesso. A N4 sempre privilegiou uma configuração direta: um volume, chave de três posições e uma ponte Floyd Rose — um conjunto pensado para tocar, não para impressionar pela quantidade. A personalidade está no que permanece.</p>
-    <p class="observation">controles · escala · silêncio</p>
-    <div class="record-plate"><span>N4 · Minimal Control</span></div>
+</div></div>
+
+<!-- SLIDE 06 — CONCLUSÃO -->
+<div class="slide-wrap"><div class="slide">
+  <svg class="compass" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="50" stroke="#0d0703" stroke-width="0.5" fill="none"/><circle cx="100" cy="100" r="60" stroke="#0d0703" stroke-width="0.3" fill="none"/></svg>
+  <div class="annotation" style="top:220px;left:55px;">instrument · player · signature</div><div class="annotation" style="bottom:280px;right:58px;transform:rotate(1.2deg);font-size:14px;">AG · Lapa, São Paulo</div>
+  <div class="photo" style="top:0;left:0;right:0;height:660px;background:linear-gradient(150deg,#1e1a15 0%,#6f5938 42%,#c2a66b 72%,#33281d 100%);"><div class="ph-grain-lines photo-base"></div><div class="ph-figure photo-base"></div><div class="ph-noise photo-base"></div><div class="ph-vignette photo-base" style="background:linear-gradient(180deg,rgba(13,7,3,0.03) 30%,rgba(13,7,3,0.55) 100%);"></div><div class="ph-fade-bottom" style="height:175px;"></div><div class="ph-label">N4 · The instrument as signature</div></div>
+  <div class="chrome"><div class="hd"><span class="ty-logo">Alexandre Guitars</span><span class="ty-ref">06 / 06</span></div><div class="rule-h" style="top:82px"></div><div class="stamp">Conclusion<br>AG-BN-004</div><div class="rule-h" style="bottom:82px"></div><div class="ft"><span class="ty-cat">Builder's Notes · Nº 004</span><span class="ty-cat">Alexandre Guitars</span></div></div>
+  <div style="position:absolute;top:690px;left:64px;right:64px;bottom:104px;z-index:5;display:flex;flex-direction:column;justify-content:center;">
+    <div class="ty-section" style="margin-bottom:24px;">Conclusion</div><div class="gold-rule" style="margin-bottom:32px;"></div>
+    <div class="ty-body" style="font-size:29px;line-height:1.85;max-width:730px;margin-bottom:24px;">Nuno Bettencourt não transformou a N4 em uma assinatura por excesso de elementos.</div>
+    <div style="width:28px;height:1px;background:rgba(13,7,3,0.14);margin-bottom:24px;"></div>
+    <div class="ty-body-i" style="font-size:28px;line-height:1.8;max-width:720px;margin-bottom:42px;">Ele chegou a um instrumento em que forma, função, resposta e estética parecem falar a mesma língua.</div>
+    <div class="ty-word" style="font-size:40px;max-width:760px;margin-bottom:42px;">Uma guitarra reconhecível antes mesmo de ser tocada.</div>
+    <div style="display:flex;flex-direction:column;gap:8px;"><div class="ty-logo" style="font-size:15px;letter-spacing:7px;color:rgba(13,7,3,0.48);">Alexandre Guitars</div><div class="ty-tagline">A técnica pode ser precisa. A identidade precisa ser sua.</div></div>
   </div>
-  <aside class="record-aside"><strong>Archive reference</strong><p>controles · escala · silêncio</p><strong>Visual note</strong><p>N4 · Minimal Control</p></aside>
-</section><section class="record-section">
-  <div class="record-no">03 / 04</div>
-  <div class="record-section-main">
-    <p class="section-label">Sound & Hardware</p>
-    <h2>The sound has a shape</h2>
-    <p>O som do Nuno também está desenhado na arquitetura do instrumento. A combinação histórica de Bill Lawrence L-500 na ponte e Seymour Duncan '59 no braço se tornou parte do vocabulário da N4. Hardware não substitui identidade. Ele a serve.</p>
-    <p class="observation">L-500 · '59 · resposta</p>
-    <div class="record-plate"><span>Pickup Architecture · N4</span></div>
-  </div>
-  <aside class="record-aside"><strong>Archive reference</strong><p>L-500 · '59 · resposta</p><strong>Visual note</strong><p>Pickup Architecture · N4</p></aside>
-</section><section class="record-section">
-  <div class="record-no">04 / 04</div>
-  <div class="record-section-main">
-    <p class="section-label">Material Note</p>
-    <h2>Finish as philosophy</h2>
-    <p>O natural não é ausência. É uma escolha. Bettencourt ficou associado às N4 sem pintura, valorizando a sensação e a resposta de instrumentos com acabamento natural. Em entrevista, explicou que não gostava do resultado sonoro de suas guitarras quando passaram a receber pintura. “Meu” instrumento. Mais importante do que adicionar detalhes foi retirar o que não era necessário — até que a guitarra parecesse inevitavelmente dele. A identidade começa onde a decoração termina.</p>
-    <p class="observation">natural · raw · response</p>
-    <div class="record-plate"><span>Natural Finish</span></div>
-  </div>
-  <aside class="record-aside"><strong>Archive reference</strong><p>natural · raw · response</p><strong>Visual note</strong><p>Natural Finish</p></aside>
-</section>
-    <section class="record-quote"><p>“Uma guitarra reconhecível antes mesmo de ser tocada.”</p><small>AG-BN-004 · Builder's Notes</small></section>
-    <nav class="record-nav" aria-label="Navegação entre registros">
-      <a href="003-jaco-pastorius.html"><div class="nav-side">← Anterior</div><div class="nav-title">Jaco Pastorius</div></a>
-      <a class="collection" href="../../series/builders-notes.html">Collection<br>Builder's Notes</a>
-      <span></span>
-    </nav>
-  </div>
-</main>
-<footer class="site-footer">
-  <div class="footer-row">
-    <div><strong>Alexandre Guitars Archive</strong><br><span>Construídas para atravessar gerações.</span></div>
-    <div>AG-BN-004 · Nuno Bettencourt<br><span>© Alexandre Guitars</span></div>
-  </div>
-</footer>
+</div></div>
+
+</div>
+<script>
+async function loadCMSImages(){
+  const fallback = { hero: '/media/1-1.jpg', image_02: '/media/1000170281.jpg' };
+  const images = { ...fallback };
+  try {
+    const url = 'https://raw.githubusercontent.com/AlexandreGuitars/alexandre-guitars-archive/main/content/builders-notes/AG-BN-004.md';
+    const response = await fetch(url + '?t=' + Date.now(), { cache: 'no-store' });
+    if (!response.ok) throw new Error('CMS content unavailable');
+    const md = await response.text();
+    const heroMatch = md.match(/hero:\s*\n\s*image:\s*(\S+)/);
+    const image02Match = md.match(/image_02:\s*\n\s*image:\s*(\S+)/);
+    if (heroMatch) images.hero = heroMatch[1];
+    if (image02Match) images.image_02 = image02Match[1];
+  } catch (error) {
+    console.warn('Archive CMS image loader: using fallback images.', error);
+  }
+
+  document.querySelectorAll('[data-cms-image]').forEach(block => {
+    const key = block.dataset.cmsImage;
+    const img = block.querySelector('img');
+    if (img && images[key]) img.src = images[key];
+  });
+}
+
+loadCMSImages();
+
+function scale(){const vw=window.innerWidth-48;const s=Math.min(1,vw/1080);document.querySelectorAll('.slide-wrap').forEach(w=>{w.style.transform=`scale(${s})`;w.style.marginBottom=`${(1350*s)-1350+64}px`;});}
+scale();window.addEventListener('resize',scale);
+</script>
 </body>
 </html>
