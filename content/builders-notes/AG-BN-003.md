@@ -5,6 +5,8 @@ subtitle: O baixo que aprendeu a cantar.
 year: 2026
 excerpt: Um instrumento sem trastes e uma nova maneira de pensar o papel do baixo.
 images:
+  hero:
+    image: /media/alexandre-1.png
   image_02:
     image: /media/alexandre.png
 quote: O baixo podia sustentar. Jaco queria que ele também respirasse.
