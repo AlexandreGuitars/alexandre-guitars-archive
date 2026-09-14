@@ -38,7 +38,7 @@ for (const filename of fs.readdirSync(contentDir).filter(name => /^AG-BN-\\d{3}\
 
   for (const key of keys) {
     const image = extractImage(markdown, key);
-    if (image && (/^https?:\\/\\//i.test(image) || image.startsWith('/media/') || image.startsWith('media/'))) {
+    if (image && (/^https?:\/\//i.test(image) || image.startsWith('/media/') || image.startsWith('media/'))) {
       record[key] = image;
     }
   }
