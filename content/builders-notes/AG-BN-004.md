@@ -7,9 +7,9 @@ excerpt: A N4 nasceu de uma combinação pouco convencional de arquitetura,
   componentes e intenção.
 images:
   hero:
-    image: /media/1-1.jpg
+    image: /media/2.jpg
   image_02:
-    image: /media/1000170281.jpg
+    image: /media/3.jpg
 quote: Uma guitarra reconhecível antes mesmo de ser tocada.
 ---
 A N4 nasceu dessa segunda categoria: a guitarra que acaba se tornando parte da identidade de quem a toca.
