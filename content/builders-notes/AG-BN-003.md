@@ -4,13 +4,6 @@ title: Jaco Pastorius
 subtitle: O baixo que aprendeu a cantar.
 year: 2026
 excerpt: Um instrumento sem trastes e uma nova maneira de pensar o papel do baixo.
-images:
-  hero:
-    image: /media/alexandre-1.png
-  image_02:
-    image: /media/alexandre.png
-  image_03:
-    image: /media/alexandre-2.png
 quote: O baixo podia sustentar. Jaco queria que ele também respirasse.
 ---
 Sem trastes para esconder a afinação, cada nota depende diretamente da mão.
