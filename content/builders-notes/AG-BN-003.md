@@ -9,6 +9,8 @@ images:
     image: /media/alexandre-1.png
   image_02:
     image: /media/alexandre.png
+  image_03:
+    image: /media/alexandre-2.png
 quote: O baixo podia sustentar. Jaco queria que ele também respirasse.
 ---
 Sem trastes para esconder a afinação, cada nota depende diretamente da mão.
