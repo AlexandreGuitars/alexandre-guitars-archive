@@ -8,7 +8,7 @@ subtitle: >-
   Quando trocar componentes deixa de ser apenas um upgrade e passa a ser uma
   forma de construir o instrumento que o músico realmente precisa.
 year: 2026
-status: published
+status: draft
 excerpt: >-
   Três guitarras chegaram à oficina para trabalhos diferentes.
 
