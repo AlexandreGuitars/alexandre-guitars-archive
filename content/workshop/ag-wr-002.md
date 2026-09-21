@@ -50,5 +50,6 @@ excerpt: >-
 
   O instrumento não termina sua história quando deixa a fábrica.
 hero: /media/01-tres-guitarras.jpg
-quote: ..
+quote: Algumas guitarras não precisam ser substituídas. Precisam apenas
+  encontrar a configuração certa
 ---
