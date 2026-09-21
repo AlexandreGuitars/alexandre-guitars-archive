@@ -50,4 +50,5 @@ excerpt: >-
 
   O instrumento não termina sua história quando deixa a fábrica.
 hero: /media/01-tres-guitarras.jpg
+quote: .
 ---
