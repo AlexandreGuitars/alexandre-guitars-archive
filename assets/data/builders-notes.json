@@ -1,7 +1,11 @@
 {
   "AG-BN-001": {},
   "AG-BN-002": {
-    "hero": "/media/Eric-Gales-DryBell.jpg"
+    "hero": "/media/Eric-Gales-DryBell.jpg",
+    "image_02": "/media/Eric-Gales-DryBell-1.jpg",
+    "image_03": "/media/Eric-Gales-DryBell-2.jpg",
+    "image_04": "/media/Eric-Gales-DryBell-3.jpg",
+    "image_05": "/media/Eric-Gales-DryBell-4.jpg"
   },
   "AG-BN-003": {},
   "AG-BN-004": {
