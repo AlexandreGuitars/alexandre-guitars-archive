@@ -3,11 +3,13 @@ ref: AG-BN-002
 title: Eric Gales
 subtitle: A identidade antes da técnica.
 year: 2026
-excerpt: Uma guitarra invertida, uma perspectiva própria e uma identidade que não depende de seguir uma fórmula.
-hero: ""
+excerpt: Uma guitarra invertida, uma perspectiva própria e uma identidade que
+  não depende de seguir uma fórmula.
+images:
+  hero:
+    image: /media/Eric-Gales-DryBell.jpg
 quote: A técnica pode ser aprendida. A identidade precisa ser construída.
 ---
-
 Eric Gales construiu uma relação própria com a guitarra.
 
 Canhoto, mas acostumado a escrever com a mão direita, toca guitarras de destro invertidas, sem reencordoá-las. O resultado não é apenas uma adaptação física. É uma linguagem.
