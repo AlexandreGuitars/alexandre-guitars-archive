@@ -54,4 +54,40 @@ before_images:
   - /media/01-tres-guitarras-1.jpg
 quote: Algumas guitarras não precisam ser substituídas. Precisam apenas
   encontrar a configuração certa
+introduction: Três guitarras chegaram à oficina para trabalhos diferentes.
+construction_note: >-
+  Uma Cort KX300, para regulagem e substituição dos captadores pelos Seymour
+  Duncan Blackouts.
+
+
+  Uma Yamaha Revstar, para receber um Seymour Duncan JB na ponte e um '59 no
+  braço.
+
+
+  E uma Tagima Telecaster Woodstock, que receberia os captadores originais
+  retirados da Revstar.
+conclusion: >-
+  
+
+  Mas existe uma relação entre elas.
+
+
+  Nenhuma das três guitarras precisava permanecer exatamente como havia saído da
+  fábrica.
+
+
+  Cada uma poderia ser modificada para responder melhor ao músico que a utiliza.
+
+
+  A Cort receberia uma nova voz.
+
+
+  A Revstar, uma nova combinação de captadores.
+
+
+  E os componentes retirados de uma guitarra encontrariam uma segunda função em
+  outra.
+
+
+  O instrumento não termina sua história quando deixa a fábrica.
 ---
