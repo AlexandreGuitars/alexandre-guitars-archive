@@ -8,6 +8,14 @@ excerpt: Uma guitarra invertida, uma perspectiva própria e uma identidade que
 images:
   hero:
     image: /media/Eric-Gales-DryBell.jpg
+  image_02:
+    image: /media/Eric-Gales-DryBell-1.jpg
+  image_03:
+    image: /media/Eric-Gales-DryBell-2.jpg
+  image_04:
+    image: /media/Eric-Gales-DryBell-3.jpg
+  image_05:
+    image: /media/Eric-Gales-DryBell-4.jpg
 quote: A técnica pode ser aprendida. A identidade precisa ser construída.
 ---
 Eric Gales construiu uma relação própria com a guitarra.
