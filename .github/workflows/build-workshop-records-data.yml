@@ -1,0 +1,34 @@
+name: Build Workshop Records data
+
+on:
+  push:
+    paths:
+      - "content/workshop/**"
+      - "tools/build-workshop-records-data.js"
+      - ".github/workflows/build-workshop-records-data.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build public Workshop Records JSON
+        run: node tools/build-workshop-records-data.js
+
+      - name: Commit generated data
+        run: |
+          if git diff --quiet -- assets/data/workshop-records.json; then
+            echo "No Workshop Records data changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/data/workshop-records.json
+          git commit -m "Update Workshop Records public data"
+          git push
