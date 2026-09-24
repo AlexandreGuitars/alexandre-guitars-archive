@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-23T22:09:11.216Z",
+  "generatedAt": "2026-09-24T14:27:33.702Z",
   "records": [
     {
       "ref": "AG-WR-002",
       "title": "Três guitarras. Três caminhos.",
-      "subtitle": ">-",
+      "subtitle": "Cort KX300 · Yamaha Revstar · Tagima Telecaster Woodstock\n\nQuando trocar componentes deixa de ser apenas um upgrade e passa a ser uma forma de construir o instrumento que o músico realmente precisa.",
       "year": 2026,
-      "excerpt": ">-",
+      "excerpt": "Três guitarras chegaram à oficina para trabalhos diferentes.\n\nUma Cort KX300, para regulagem e substituição dos captadores pelos Seymour Duncan Blackouts.\n\nUma Yamaha Revstar, para receber um Seymour Duncan JB na ponte e um '59 no braço.\n\nE uma Tagima Telecaster Woodstock, que receberia os captadores originais retirados da Revstar.\n\nÀ primeira vista, são três intervenções independentes.\n\nMas existe uma relação entre elas.\n\nNenhuma das três guitarras precisava permanecer exatamente como havia saído da fábrica.\n\nCada uma poderia ser modificada para responder melhor ao músico que a utiliza.\n\nA Cort receberia uma nova voz.\n\nA Revstar, uma nova combinação de captadores.\n\nE os componentes retirados de uma guitarra encontrariam uma segunda função em outra.\n\nO instrumento não termina sua história quando deixa a fábrica.",
       "hero": "/media/01-tres-guitarras.jpg",
       "instruments": [],
       "before_images": [
@@ -15,7 +15,20 @@
       "workshop_images": [],
       "after_images": [],
       "quote": "Algumas guitarras não precisam ser substituídas. Precisam apenas",
-      "sections": [],
+      "sections": [
+        {
+          "heading": "01 — Introdução",
+          "body": "Três guitarras chegaram à oficina para trabalhos diferentes."
+        },
+        {
+          "heading": "02 — Observação de construção",
+          "body": "Uma Cort KX300, para regulagem e substituição dos captadores pelos Seymour Duncan Blackouts.\n\nUma Yamaha Revstar, para receber um Seymour Duncan JB na ponte e um '59 no braço.\n\nE uma Tagima Telecaster Woodstock, que receberia os captadores originais retirados da Revstar."
+        },
+        {
+          "heading": "03 — Conclusão",
+          "body": "Mas existe uma relação entre elas.\n\nNenhuma das três guitarras precisava permanecer exatamente como havia saído da fábrica.\n\nCada uma poderia ser modificada para responder melhor ao músico que a utiliza.\n\nA Cort receberia uma nova voz.\n\nA Revstar, uma nova combinação de captadores.\n\nE os componentes retirados de uma guitarra encontrariam uma segunda função em outra.\n\nO instrumento não termina sua história quando deixa a fábrica."
+        }
+      ],
       "source": "content/workshop/ag-wr-002.md"
     },
     {
@@ -23,7 +36,7 @@
       "title": "Depois de anos em silêncio",
       "subtitle": "Fernandes Stratocaster & Tanglewood — um retorno à música.",
       "year": 2026,
-      "excerpt": "\"Dois instrumentos, uma mesma história: anos guardados dentro de seus cases antes de voltarem à música.",
+      "excerpt": "\"Dois instrumentos, uma mesma história: anos guardados dentro de seus",
       "hero": "/media/workshop/01-tanglewood-before.jpeg",
       "instruments": [
         {
