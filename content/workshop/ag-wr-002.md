@@ -23,32 +23,6 @@ excerpt: >-
 
   E uma Tagima Telecaster Woodstock, que receberia os captadores originais
   retirados da Revstar.
-
-
-  À primeira vista, são três intervenções independentes.
-
-
-  Mas existe uma relação entre elas.
-
-
-  Nenhuma das três guitarras precisava permanecer exatamente como havia saído da
-  fábrica.
-
-
-  Cada uma poderia ser modificada para responder melhor ao músico que a utiliza.
-
-
-  A Cort receberia uma nova voz.
-
-
-  A Revstar, uma nova combinação de captadores.
-
-
-  E os componentes retirados de uma guitarra encontrariam uma segunda função em
-  outra.
-
-
-  O instrumento não termina sua história quando deixa a fábrica.
 hero: /media/01-tres-guitarras.jpg
 before_images:
   - /media/01-tres-guitarras-1.jpg
