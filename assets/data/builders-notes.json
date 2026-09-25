@@ -1,14 +1,32 @@
 {
   "AG-BN-001": {},
   "AG-BN-002": {
-    "hero": "/media/1-1.png",
-    "image_02": "/media/2.png",
-    "image_03": "/media/3.png",
-    "image_04": "/media/4.png"
+    "hero": {
+      "image": "/media/1-1.png",
+      "caption": ""
+    },
+    "image_02": {
+      "image": "/media/2.png",
+      "caption": ""
+    },
+    "image_03": {
+      "image": "/media/3.png",
+      "caption": ""
+    },
+    "image_04": {
+      "image": "/media/4.png",
+      "caption": ""
+    }
   },
   "AG-BN-003": {},
   "AG-BN-004": {
-    "hero": "/media/1.png",
-    "image_02": "/media/3.jpg"
+    "hero": {
+      "image": "/media/1.png",
+      "caption": ""
+    },
+    "image_02": {
+      "image": "/media/3.jpg",
+      "caption": ""
+    }
   }
 }

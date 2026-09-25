@@ -2,7 +2,12 @@ const fs = require('fs');
 const path = require('path');
 
 const contentDir = path.join(process.cwd(), 'content', 'builders-notes');
-const outputFile = path.join(process.cwd(), 'assets', 'data', 'builders-notes.json');
+const outputFile = path.join(
+  process.cwd(),
+  'assets',
+  'data',
+  'builders-notes.json'
+);
 
 const keys = [
   'hero',
@@ -13,31 +18,23 @@ const keys = [
   'image_06'
 ];
 
-function extractImage(markdown, key) {
+function getIndent(line) {
+  return line.length - line.trimStart().length;
+}
+
+function extractImageEntry(markdown, key) {
   const lines = markdown.split(/\r?\n/);
-
-  const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const keyPattern = new RegExp(
-    '^\\s*' + escapedKey + ':\\s*$'
-  );
-
-  /*
-    Estrutura atual do Pages CMS:
-
-    images:
-      hero:
-        image: /media/file.jpg
-      image_02:
-        image: /media/file.jpg
-  */
 
   let insideImages = false;
   let insideKey = false;
   let keyIndent = -1;
 
+  let image = null;
+  let caption = null;
+
   for (const line of lines) {
     const trimmed = line.trim();
-    const indent = line.length - line.trimStart().length;
+    const indent = getIndent(line);
 
     if (trimmed === 'images:') {
       insideImages = true;
@@ -50,49 +47,85 @@ function extractImage(markdown, key) {
 
     if (trimmed === '---') break;
 
-    if (keyPattern.test(line)) {
-      insideKey = true;
-      keyIndent = indent;
+    /*
+     * A new image key at the same indentation ends
+     * the previous image block.
+     */
+    const keyMatch = line.match(/^\s*(hero|image_\d{2}):\s*$/);
+
+    if (keyMatch) {
+      if (keyMatch[1] === key) {
+        insideKey = true;
+        keyIndent = indent;
+        image = null;
+        caption = null;
+      } else if (insideKey && indent <= keyIndent) {
+        insideKey = false;
+      }
+
       continue;
     }
 
-    if (insideKey) {
-      /*
-        Se encontramos outra chave no mesmo nível,
-        encerramos a leitura da chave atual.
-      */
-      if (indent <= keyIndent && trimmed.endsWith(':')) {
-        insideKey = false;
-        continue;
-      }
+    if (!insideKey) continue;
 
-      const match = line.match(
-        /^\s*image:\s*["']?([^"'\s]+)["']?\s*$/
-      );
+    if (indent <= keyIndent && trimmed.endsWith(':')) {
+      insideKey = false;
+      continue;
+    }
 
-      if (match) {
-        return match[1].trim();
-      }
+    const imageMatch = line.match(
+      /^\s*image:\s*["']?([^"'\s]+)["']?\s*$/
+    );
+
+    if (imageMatch && image === null) {
+      image = imageMatch[1].trim();
+      continue;
+    }
+
+    const captionMatch = line.match(
+      /^\s*caption:\s*(.*)$/
+    );
+
+    if (captionMatch && caption === null) {
+      caption = captionMatch[1]
+        .trim()
+        .replace(/^['"]|['"]$/g, '');
+      continue;
     }
   }
 
   /*
-    Compatibilidade com estrutura antiga:
+   * Compatibility with the older flat structure:
+   *
+   * hero: /media/file.jpg
+   * image_02: /media/file.jpg
+   */
+  if (!image) {
+    const escapedKey = key.replace(
+      /[.*+?^${}()|[\]\\]/g,
+      '\\$&'
+    );
 
-    hero: /media/file.jpg
-    image_02: /media/file.jpg
-  */
+    const legacyPattern = new RegExp(
+      '^\\s*' +
+        escapedKey +
+        ':\\s*["\']?([^"\'\\s]+)["\']?\\s*$',
+      'm'
+    );
 
-  const legacyPattern = new RegExp(
-    '^\\s*' +
-      escapedKey +
-      ':\\s*["\']?([^"\'\\s]+)["\']?\\s*$',
-    'm'
-  );
+    const legacyMatch = markdown.match(legacyPattern);
 
-  const legacyMatch = markdown.match(legacyPattern);
+    if (legacyMatch) {
+      image = legacyMatch[1].trim();
+    }
+  }
 
-  return legacyMatch ? legacyMatch[1].trim() : null;
+  if (!image) return null;
+
+  return {
+    image,
+    caption: caption || ''
+  };
 }
 
 function isAllowedImage(value) {
@@ -126,14 +159,16 @@ for (const filename of files) {
   );
 
   const ref = filename.replace(/\.md$/, '');
-
   const record = {};
 
   for (const key of keys) {
-    const image = extractImage(markdown, key);
+    const entry = extractImageEntry(markdown, key);
 
-    if (isAllowedImage(image)) {
-      record[key] = image;
+    if (entry && isAllowedImage(entry.image)) {
+      record[key] = {
+        image: entry.image,
+        caption: entry.caption
+      };
     }
   }
 

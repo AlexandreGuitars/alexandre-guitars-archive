@@ -1,14 +1,14 @@
-
 /* ============================================================
    BUILDER'S NOTES · CMS PHOTOGRAPHY
    Shared image treatment for Archive record plates.
    Does not alter the existing record layout or dimensions.
    ============================================================ */
-.record-plate.cms-photo-ready {
+
+.record-plate {
   overflow: hidden;
 }
 
-.record-plate.cms-photo-ready .cms-record-image {
+.record-plate .cms-record-image {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -16,26 +16,37 @@
   object-fit: cover;
   object-position: center;
   display: block;
+  z-index: 1;
   filter: saturate(.78) contrast(1.04) sepia(.08);
 }
 
-.record-plate.cms-photo-ready .cms-record-image::selection {
+.record-plate .cms-record-image::selection {
   background: transparent;
 }
 
-.record-plate.cms-photo-ready::after {
+.record-plate::after {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 2;
   background:
-    linear-gradient(180deg, rgba(13,7,3,.04) 25%, rgba(13,7,3,.08) 58%, rgba(13,7,3,.52) 100%),
-    linear-gradient(135deg, rgba(13,7,3,.12), rgba(139,94,42,.08) 55%, rgba(212,168,67,.04));
+    linear-gradient(
+      180deg,
+      rgba(13,7,3,.04) 25%,
+      rgba(13,7,3,.08) 58%,
+      rgba(13,7,3,.52) 100%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(13,7,3,.12),
+      rgba(139,94,42,.08) 55%,
+      rgba(212,168,67,.04)
+    );
   mix-blend-mode: multiply;
 }
 
-.record-plate.cms-photo-ready .cms-record-caption {
+.record-plate .cms-record-caption {
   position: absolute;
   left: 22px;
   right: 22px;
@@ -49,34 +60,26 @@
   text-shadow: 0 1px 8px rgba(13,7,3,.28);
 }
 
-.record-plate.cms-photo-ready .cms-record-caption[hidden] {
+.record-plate.cms-photo-loaded {
+  background: #3b3327;
+}
+
+.record-plate.cms-photo-loaded span.record-placeholder-label {
   display: none;
 }
 
-.record-plate.cms-photo-ready.cms-photo-empty::after {
+.record-plate:not(.cms-photo-loaded)::after {
   display: none;
 }
 
-.record-plate.cms-photo-ready.cms-photo-empty .cms-record-caption {
+.record-plate:not(.cms-photo-loaded) .cms-record-caption {
   position: static;
   color: rgba(13,7,3,.45);
   text-shadow: none;
 }
 
-.record-plate.cms-photo-ready.cms-photo-loaded span.record-placeholder-label {
-  display: none;
-}
-
-.record-plate.cms-photo-ready.cms-photo-loaded {
-  background: #3b3327;
-}
-
-.record-plate.cms-photo-ready.cms-photo-loaded .cms-record-caption {
-  display: block;
-}
-
 @media (max-width: 820px) {
-  .record-plate.cms-photo-ready .cms-record-caption {
+  .record-plate .cms-record-caption {
     left: 16px;
     right: 16px;
     bottom: 12px;
