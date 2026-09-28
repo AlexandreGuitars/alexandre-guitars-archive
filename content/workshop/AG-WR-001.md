@@ -3,6 +3,7 @@ ref: AG-WR-001
 title: Depois de anos em silêncio
 subtitle: Fernandes Stratocaster & Tanglewood — um retorno à música.
 year: 2026
+status: published
 excerpt: "Dois instrumentos, uma mesma história: anos guardados dentro de seus
   cases antes de voltarem à música."
 hero: /media/workshop/01-tanglewood-before.jpeg
