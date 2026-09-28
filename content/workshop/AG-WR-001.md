@@ -12,19 +12,18 @@ instruments:
   - instrument: Tanglewood
     services: Limpeza geral · Regulagem completa
 before_images:
-  - /media/workshop/14-fernandes-pickups-after.jpeg
-  - /media/workshop/16-fernandes-controls-after.jpeg
-  - /media/workshop/17-fernandes-bridge-after.jpeg
-  - /media/workshop/11-fernandes-fretboard-before.jpeg
-  - /media/workshop/01-tanglewood-before.jpeg
-  - /media/workshop/02-tanglewood-before-detail.jpeg
+  - /media/workshop/05-fernandes-pickups-before.jpeg
+  - /media/workshop/06-fernandes-controls-before.jpeg
+  - /media/workshop/07-fernandes-bridge-before.jpeg
+  - /media/workshop/15-fernandes-fretboard-after.jpeg
 workshop_images:
   - /media/workshop/12-fernandes-workbench.jpeg
   - /media/workshop/13-fernandes-body-workbench.jpeg
 after_images:
-  - /media/workshop/05-fernandes-pickups-before.jpeg
-  - /media/workshop/06-fernandes-controls-before.jpeg
-  - /media/workshop/07-fernandes-bridge-before.jpeg
+  - /media/workshop/01-tanglewood-before.jpeg
+  - /media/workshop/03-fernandes-before.jpeg
+  - /media/workshop/08-fernandes-pickups-detail-before.jpeg
+  - /media/workshop/09-fernandes-pickups-detail.jpeg
 quote: Alguns instrumentos passam anos esperando. Quando voltam, a história continua.
 ---
 ## 01 — O case
