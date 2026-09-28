@@ -8,6 +8,10 @@ on:
       - ".github/workflows/build-workshop-records-data.yml"
   workflow_dispatch:
 
+concurrency:
+  group: workshop-records-data
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -17,18 +21,43 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Build public Workshop Records JSON
-        run: node tools/build-workshop-records-data.js
-
-      - name: Commit generated data
+      - name: Build and publish public Workshop Records JSON
+        shell: bash
         run: |
-          if git diff --quiet -- assets/data/workshop-records.json; then
-            echo "No Workshop Records data changes."
-            exit 0
-          fi
+          set -euo pipefail
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/data/workshop-records.json
-          git commit -m "Update Workshop Records public data"
-          git push
+
+          for attempt in 1 2 3 4 5; do
+            echo "Workshop Records publish attempt $attempt/5"
+
+            git fetch origin main
+            git reset --hard origin/main
+
+            node tools/build-workshop-records-data.js
+
+            if git diff --quiet -- assets/data/workshop-records.json; then
+              echo "No Workshop Records data changes."
+              exit 0
+            fi
+
+            git add assets/data/workshop-records.json
+            git commit -m "Update Workshop Records public data"
+
+            if git push origin HEAD:main; then
+              echo "Workshop Records public data published successfully."
+              exit 0
+            fi
+
+            echo "Push rejected because main changed concurrently."
+            git fetch origin main
+            git reset --hard origin/main
+            sleep $((attempt * 2))
+          done
+
+          echo "Unable to publish Workshop Records data after 5 attempts."
+          exit 1
