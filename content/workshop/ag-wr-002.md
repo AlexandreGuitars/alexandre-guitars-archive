@@ -1,28 +1,13 @@
 ---
 ref: AG-WR-002
 title: Três guitarras. Três caminhos.
-subtitle: >-
+subtitle: |+
   Cort KX300 · Yamaha Revstar · Tagima Telecaster Woodstock
 
-
-  Quando trocar componentes deixa de ser apenas um upgrade e passa a ser uma
-  forma de construir o instrumento que o músico realmente precisa.
 year: 2026
 status: published
-excerpt: >-
-  Três guitarras chegaram à oficina para trabalhos diferentes.
-
-
-  Uma Cort KX300, para regulagem e substituição dos captadores pelos Seymour
-  Duncan Blackouts.
-
-
-  Uma Yamaha Revstar, para receber um Seymour Duncan JB na ponte e um '59 no
-  braço.
-
-
-  E uma Tagima Telecaster Woodstock, que receberia os captadores originais
-  retirados da Revstar.
+excerpt: Quando trocar componentes deixa de ser apenas um upgrade e passa a ser
+  uma forma de construir o instrumento que o músico realmente precisa.
 hero: /media/01-tres-guitarras.jpg
 before_images:
   - /media/01-tres-guitarras-1.jpg
